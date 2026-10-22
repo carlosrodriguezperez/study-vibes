@@ -43,6 +43,7 @@ The demo episode is pre-rendered on purpose, so the stage demo makes no live mod
 ```bash
 npm run demo:prepare   # renders demo audio into .data/ (server must be running)
 npm run demo:fixture   # regenerates fixtures/demo-episode.json from the corpus PDF
+npm run draft          # text-only preview of the script (no audio, no quota)
 ```
 
 Run `demo:prepare` once before the pitch, with the dev server up. After that, "Try the demo episode" is instant and works even if the providers are down.

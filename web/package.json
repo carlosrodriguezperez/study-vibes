@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "demo:prepare": "node scripts/prepare-demo.mjs",
-    "demo:fixture": "node scripts/make-demo-fixture.mjs"
+    "demo:fixture": "node scripts/make-demo-fixture.mjs",
+    "draft": "node scripts/draft.mjs"
   },
   "dependencies": {
     "next": "16.4.2",

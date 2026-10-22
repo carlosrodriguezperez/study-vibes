@@ -21,6 +21,8 @@ npm start              # serve the build
 npm run lint
 npm run demo:prepare   # pre-render the demo episode (server running)
 npm run demo:fixture   # regenerate the demo script fixture from the corpus PDF
+npm run draft          # text-only script preview: no audio, no TTS quota
+npm run draft -- path/to.pdf
 ```
 
 Gemini's free tier is **10 TTS requests per day per model**, so pre-render the demo before the pitch and let the pipeline skip segments that already have audio.
@@ -77,11 +79,11 @@ git push -u origin feat/short-description
 ## Product guardrails
 
 - The core loop is: **upload → topic → entertaining episode → play**, with an optional 3-question check at the end.
-- **Entertainment is the product, not decoration.** The episode must be worth listening to on its own: a hook in the first 15 seconds, a narrative, a real joke and a callback, true extra context, and a recap that points back to the source. It is not a narrated summary of the slides, and it must never sound like a class.
+- **Entertainment is the product, not decoration.** The episode must be worth listening to on its own: a hook in the first 15 seconds, a narrative, at least three jokes **about the source's own wording**, true extra context, and a recap that points back to the source. It is never a narrated summary, and it must never sound like a class.
 - **Enrichment must be true.** Added context is expected and wanted, but every added claim must be defensible, must never be attributed to the source or lecturer, and must be dropped if it cannot be verified. Never invent quotes, dates, studies, or numbers. A duller true episode beats a fun false one.
 - Do not build exams, exam correction, social features, teacher tools, a full note editor, or interactive Q&A. A single optional 3-question check is the only assessment allowed; everything else is deferred in `docs/PRODUCT.md` §1 and §10.
 - Optimize the first 60 seconds: no signup wall, no empty dashboard, one primary action, sensible defaults, hook before housekeeping.
-- Default to a **3-minute episode** and **audio-first**; video is optional.
+- Default to a **3–4 minute episode in three long segments** and **audio-first**; video is optional. Tiny chapters are not the goal — a long, funny, listenable stretch is.
 - **Laptop-first, not mobile-first:** design for a 13–15" screen and a keyboard. Full keyboard control, a two-pane player/transcript layout, and background-tab playback are part of the core experience, not polish. It must still render on a phone, but that is not the target.
 - **DeepSeek V4.1 Flash is text-only.** Never assume it can produce speech; TTS is always a separate provider, and the demo must not rely on a live provider call.
 - Prefer one service and one background worker over a complex architecture.

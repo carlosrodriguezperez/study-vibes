@@ -30,7 +30,7 @@ For each source, check:
 
 1. **Extraction** — text coverage, page order, formulas, tables, and diagrams.
 2. **Hook** — do the first 15 seconds create a reason to keep listening, or do they announce the agenda?
-3. **Humor** — is there a real joke, a memorable analogy, and a callback, or is it a lesson with adjectives? Would a student repeat the joke to a friend?
+3. **Humor** — are there at least three jokes about the source's own wording or notation, and a callback? Would a student repeat one to a friend?
 4. **Script** — does it sound like an episode rather than a read-through, and does the narrative actually carry the source's main ideas?
 5. **Coverage** — is every idea in the source's main thread present? Enrichment may not displace the syllabus.
 6. **Enrichment quality** — is the added context true, relevant, and clearly extra? One wrong "fun fact" fails the run.

@@ -88,7 +88,9 @@ These can return later; they are not part of this build.
 - **Structure:** a cold open (10–15 s) that drops the listener mid-scene → 3–5 key ideas from the source threaded through that narrative → at least one true enrichment moment → a recap that maps back to the material and calls back to the opening joke → optional check.
 - **Coverage rule:** every idea in the source's main thread appears. Enrichment may not displace the syllabus.
 - **Enrichment rule:** added context must be true, clearly extra, and never attributed to the source. If it cannot be verified, cut it.
-- **Default length:** 3 minutes, with options for 10 minutes or full coverage.
+- **Jokes about the text:** at least three per episode. Quote the source's real wording and react to it — the empty section, the `(i) (ii) (iii)` numbering, the notation, the typo. The material is the straight man.
+- **Default shape:** 3 longer segments of 160–200 words each, about 3–4 minutes. Not four tiny chapters.
+- **Speakable:** no raw formulas or symbols in the spoken text; say what they mean.
 - **Tone:** a funny, curious friend — not a lecturer. Direct "tú", short sentences, asides, at least one real joke and one callback. If a line could be read aloud by a bored teacher, it is wrong.
 
 A summary and an episode, on the same two pages of notes:
@@ -123,7 +125,7 @@ If nobody on the team laughs when the script is read aloud, it is not finished. 
 |---|---|---|
 | 1 | Upload PDF or image; pick a demo episode | Entry point |
 | 2 | Extract text from PDFs and transcribe uploaded images | Source fidelity |
-| 3 | Generate an entertaining episode script: hook, 3–5 source ideas, true enrichment, recap | The actual product |
+| 3 | Generate an entertaining episode script: 3 long segments, jokes about the source, true enrichment, recap | The actual product |
 | 4 | Text-to-speech audio with transcript | Core output |
 | 5 | Laptop player with speed, keyboard control, and resume | Core experience |
 | 6 | Progressive generation: play segment 1 while the rest renders | Makes "under 60 seconds" real |
@@ -263,7 +265,7 @@ Rules for both:
 2. **PDF only, or images too?** Images are high-value; test image transcription early.
 3. **Which TTS voice?** Pick one prebuilt voice by ear on the Spanish corpus; it has to sound amused, not solemn.
 4. **How much enrichment per episode?** Recommend one or two moments, always verified, plus a recap pointer.
-5. **Default episode length:** 3 minutes unless testing shows otherwise.
+5. **Default episode length:** 3–4 minutes in three long segments; confirm by listening, not by word count.
 6. **Quiz in the demo:** include the 3-question check, or keep it audio-only? Recommend showing one question.
 7. **Sound design:** intro sting and transitions — worth it for the "entertaining" claim, or too risky for the demo?
 

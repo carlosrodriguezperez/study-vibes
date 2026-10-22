@@ -2,6 +2,7 @@ export type Segment = {
   id: number;
   heading: string;
   text: string;
+  textHash?: string;
   audioUrl?: string;
   durationSec?: number;
 };

@@ -1,4 +1,4 @@
-import { randomUUID } from "node:crypto";
+import { createHash, randomUUID } from "node:crypto";
 import { promises as fs } from "node:fs";
 import path from "node:path";
 import { draftEpisode, synthesize, TTS_VOICE } from "./providers";
@@ -20,6 +20,10 @@ export type StartInput =
 const DEMO_ID = "demo-sets-0001";
 
 const running = new Set<string>();
+
+function hashText(text: string): string {
+  return createHash("sha1").update(text).digest("hex").slice(0, 12);
+}
 
 async function whenReady(promise: Promise<unknown>) {
   try {
@@ -126,7 +130,10 @@ async function run(id: string, input: StartInput, language: string) {
       title: draft.title,
       topic: draft.topic,
       language: draft.language || language,
-      segments: draft.segments.map((s) => ({ ...s })),
+      segments: draft.segments.map((s) => ({
+        ...s,
+        textHash: hashText(s.text),
+      })),
       quiz: draft.quiz,
       model,
       voice: TTS_VOICE,
@@ -136,7 +143,8 @@ async function run(id: string, input: StartInput, language: string) {
       const alreadyRendered = episodeBefore?.segments.find(
         (candidate) => candidate.id === segment.id,
       );
-      if (alreadyRendered?.audioUrl && alreadyRendered.durationSec) {
+      const sameText = alreadyRendered?.textHash === hashText(segment.text);
+      if (alreadyRendered?.audioUrl && alreadyRendered.durationSec && sameText) {
         // Re-rendering costs a TTS request; keep finished audio.
         await patchSegment(id, segment.id, {
           audioUrl: alreadyRendered.audioUrl,
