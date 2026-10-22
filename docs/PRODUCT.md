@@ -1,6 +1,8 @@
 # Study Vibes — Product Brief
 
 > **One-liner:** Upload your class slides and get an editable study guide, a story-driven audio/video lesson you can interrupt and question, and a quiz that proves you learned it — then make studying social.
+>
+> **Language Lens:** study the same material in a language you are learning, with level-aware notes, audio, glossaries, and practice — not just a raw translation.
 
 **Status:** Hackathon concept (ETSE 2026). No implementation yet. This document refines the original brainstorm into a buildable product definition.
 
@@ -36,6 +38,7 @@ source material → structured Markdown + diagrams → story → audio/video
 4. **Active over passive.** Listening is interrupted by questions, checkpoints, and retrieval practice.
 5. **Social without leaking.** Share results, clips, and streaks — not private course material unless explicitly chosen.
 6. **Accessible and local.** Galician, Spanish, and English; captions, transcripts, keyboard navigation, dyslexia-friendly reading mode.
+7. **Language as a lens.** The same material can be studied in a target language with scaffolding, without sacrificing technical accuracy.
 
 ---
 
@@ -47,6 +50,7 @@ source material → structured Markdown + diagrams → story → audio/video
 | **Xoán, 22 — CS student** | Wants control and diagrams | "Give me clean Markdown I can fix, link, and study from." | Edits notes, keeps cropped diagrams, exports to his own tools. |
 | **Uxía, 21 — creator / social learner** | Studies with friends | "Make studying competitive and shareable." | Shares a clip, challenges friends, keeps a streak. |
 | **Professor / TA (added)** | Prepares class material | "Generate practice and grade consistently." | Builds a quiz/exam from their slides; reviews AI grading. |
+| **Lía, 21 — exchange / language learner** | Takes a subject in a second language | "Use my course material to improve the language, not just translate it." | Reads/listens at her level, saves key terms, passes the content quiz. |
 
 ---
 
@@ -55,9 +59,9 @@ source material → structured Markdown + diagrams → story → audio/video
 1. **Create a course** (e.g., "Mathematics II") and upload PDFs, slides, photos, or notes.
 2. **Watch the conversion** with visible stages: extracting → OCR → detecting diagrams → structuring → validating.
 3. **Review and edit** the generated Markdown side-by-side with the original page; fix OCR, reorder sections, annotate.
-4. **Choose a learning experience**: narrator/persona, story style, length, language, difficulty, and which concepts are mandatory.
-5. **Generate media** (audio first, video optional) and read the editable story/script.
-6. **Study interactively**: listen/watch, pause to ask by voice or text, get cited answers and diagrams.
+4. **Choose a learning experience**: narrator/persona, story style, length, source and target language, proficiency level, difficulty, and which concepts are mandatory.
+5. **Generate media** (audio first, video optional) in the source or target language, and read the editable story/script.
+6. **Study interactively**: listen/watch, pause to ask by voice or text, get cited answers and diagrams in the language you chose.
 7. **Practice**: answer checkpoint and end-of-lesson questions; receive explanations and a weak-topic map.
 8. **Consolidate**: auto-generate a Markdown lecture, flashcards, and a spaced-review plan.
 9. **Compete and share**: post a short clip or result, challenge a friend, keep the streak alive.
@@ -142,7 +146,7 @@ source material → structured Markdown + diagrams → story → audio/video
 
 **Parameters**
 
-- Persona/narrator (see below), tone (funny, dramatic, calm, exam-focused), audience level, length, language, and mandatory concepts.
+- Persona/narrator (see below), tone (funny, dramatic, calm, exam-focused), audience level, length, source language, target language and proficiency, and mandatory concepts.
 - Optional web research for context, always with separate citations.
 - Serialized chapters with a "series bible" for consistent characters and callbacks.
 
@@ -156,12 +160,14 @@ source material → structured Markdown + diagrams → story → audio/video
 **Grounding**
 
 - Each paragraph carries citations to source blocks; added analogies are marked as `context` rather than `source`.
+- Language adaptations preserve meaning: machine translation is labeled, technical terms stay linked to the source, and simplification never removes required concepts.
 - A fact-check pass can flag unsupported claims and optionally verify with web sources.
 - The generated story is **editable Markdown**, not a black-box audio file. Users can fix a sentence and regenerate only that scene.
 
 **Outputs**
 
 - `story.md`, a scene/storyboard list, and diagram references per scene.
+- In language mode, a bilingual glossary keyed to the story and source blocks.
 - Optional learning objectives and a "what you should be able to explain" checklist.
 
 ---
@@ -173,6 +179,7 @@ source material → structured Markdown + diagrams → story → audio/video
 **Audio**
 
 - TTS with selectable voices, speed, pauses, and pronunciation lexicon for Galician/Spanish terms.
+- Language-learning audio: target-language voice, slower default pacing, clear pauses, optional repeat-after-narrator, and a dual-language transcript.
 - Chapter markers, transcript, and background music with ducking.
 - Offline download and playback.
 
@@ -181,7 +188,7 @@ source material → structured Markdown + diagrams → story → audio/video
 - Scene composition from headings, diagrams, and narration: slide/ken-burns visuals, captions, optional presenter avatar.
 - Two formats: 16:9 lesson and 9:16 short clip.
 - Auto-generated **shorts**: hook, three key points, and a call-to-action to take the quiz.
-- Localization/dubbing for gl/es/en; human review for pronunciation-critical content.
+- Localization/dubbing for UI and lesson languages, including target learning languages; human review for pronunciation-critical content.
 
 **Generation behavior**
 
@@ -199,7 +206,8 @@ source material → structured Markdown + diagrams → story → audio/video
 - Player with synced transcript, chapters, and diagrams.
 - **Pause to ask** by text or push-to-talk; speech-to-text; answer is grounded in the current lesson, the course, and optionally the web.
 - Answers include citations and can show the relevant diagram; "take me to that part" seeks the audio.
-- Intent shortcuts: *explain simpler*, *give an example*, *why does this matter*, *is this on the exam*, *translate*.
+- Intent shortcuts: *explain simpler*, *give an example*, *why does this matter*, *is this on the exam*, *translate this*, *say it slower*, *what does this word mean*, *explain the grammar*.
+- In language mode, ask in either language; answer in the target language by default, with a one-click "show source language" toggle.
 - **Checkpoint questions** every few minutes; a wrong answer rewinds to the relevant segment.
 - **Hands-free voice conversation** with barge-in (added).
 - Questions and answers can be appended to notes; recurring confusion becomes a weak-topic entry.
@@ -219,6 +227,7 @@ source material → structured Markdown + diagrams → story → audio/video
 - Image-based questions reuse cropped diagrams.
 - Distractors encode plausible misconceptions; explanations link to source blocks.
 - Adaptive difficulty based on concept mastery; spaced review of missed items.
+- **Language mode** adds separate checks: vocabulary in context, listening comprehension, and short production. Score subject mastery and language separately; do not penalize content knowledge for grammar mistakes.
 
 **Exam generator**
 
@@ -262,14 +271,14 @@ source material → structured Markdown + diagrams → story → audio/video
 **Goal:** One coherent app that a non-technical student can use without a tutorial.
 
 - **Landing/demo**: try a sample deck without signing up.
-- **Onboarding**: goal (exam date), subject, language, level, upload.
+- **Onboarding**: goal (exam date or language goal), subject, UI language, source language, target study language and level, upload.
 - **Dashboard**: continue studying, courses, streak, upcoming exams, weak topics.
 - **Project tabs**: Source · Notes · Story · Media · Practice · Analytics.
 - **Editor**: split source/notes, slash commands, preview, version history.
 - **Generation panel**: style presets, estimated time/cost, progress, cancel.
 - **Player**, **quiz**, **exam builder**, and **grading queue** as first-class pages.
 - **Teacher mode** (added): classes, assignments, anonymous confusion heatmap, cohort analytics.
-- **Settings**: language, accessibility, privacy, export/delete all data, connected accounts.
+- **Settings**: UI language, study/target language, accessibility, privacy, export/delete all data, connected accounts.
 - Responsive/PWA, dark mode, WCAG 2.2 AA, keyboard shortcuts, screen-reader labels, dyslexia-friendly font option.
 - Empty states and a seeded demo course so the app never looks broken during a demo.
 
@@ -286,6 +295,84 @@ source material → structured Markdown + diagrams → story → audio/video
 - **Integrity-aware sharing**: share notes and clips, never the copyrighted source deck by default.
 - **Import/export bridges** (added): Google Drive, Notion, Anki, Quizlet, plain Markdown zip.
 - **Collaborative notes** (added): comment, suggest, and merge edits with friends.
+
+---
+
+### 4.10 Language-learning mode ("Language Lens")
+
+**Goal:** Reuse the same course material as comprehensible input to learn a target language, without lowering technical accuracy or forcing the learner to abandon the subject.
+
+**Key distinction:** UI language, source language, and target language are independent. A Galician student can keep the UI in Galician, study chemistry slides written in English, and generate B1 Spanish audio to learn Spanish.
+
+**Modes**
+
+- **Translation/access:** a faithful target-language version for comprehension; no simplification.
+- **Immersion:** notes, story, and audio mainly in the target language, adapted to the chosen level; technical terms are glossed rather than removed.
+- **Bilingual:** source and target side by side; toggle per paragraph; click any term for a gloss.
+- **Sandwich (lower levels):** target-language narration with brief source-language glosses at key points.
+
+**Inputs and parameters**
+
+- Target language and variant (e.g., `pt-PT` vs `pt-BR`, `en-GB` vs `en-US`).
+- Proficiency target, starting with CEFR A2–C1 (extend later).
+- Mode, gloss language, audio speed, glossary density, and whether key terms stay visible in the source language.
+- Optional subject goal (exam date/curriculum) so language practice does not drift from the course.
+
+**Adaptation rules**
+
+- **Simplify language, not concepts.** Never drop learning objectives, formulas, or required technical distinctions.
+- Preserve technical terms, names, units, code, and formulas. Each glossary entry includes the source term, target term, pronunciation, definition in both languages, an example sentence, and a source link.
+- Aim for comprehensible input: roughly 90–95% known vocabulary at the chosen level; flag and gloss the rest.
+- Prefer short sentences, high-frequency vocabulary, and explicit connectors. Explain idioms and cultural references instead of translating them literally.
+- Adapt examples to the learner's context only when meaning is preserved; label cultural substitutions.
+- Maintain terminology consistency across the course and across lessons.
+
+**Media and playback**
+
+- Target-language TTS with slower pacing, clear pauses, and optional repeat-after-narrator.
+- Dual subtitles (target + source), click-to-translate transcript, and word-level lookup.
+- Optional shadowing/pronunciation practice with speech feedback (phase 2; not MVP).
+- At lower levels, mix target narration with short source-language glosses rather than switching the whole lesson.
+
+**Practice**
+
+- Content quiz in the target language plus a language quiz (vocabulary in context, grammar, listening comprehension).
+- **Separate mastery scores** for subject and language; grammar mistakes must not hide content understanding.
+- Auto-built vocabulary deck from encountered terms, with spaced repetition and Anki export.
+- "Explain it back" in the target language; feedback addresses meaning first, then language.
+- Reading/listening checks ask for the main idea, not word-for-word reproduction.
+
+**Q&A**
+
+- Ask in either language; answer in the target language by default, with a one-click "show source language" toggle.
+- Word/phrase lookup, grammar explanation, slower replay, and simpler paraphrase.
+- Do not silently switch to the source language when the learner struggles; offer scaffolding first.
+
+**UX**
+
+- A language badge on every lesson; switching target language or level regenerates derived artifacts only (the source note stays intact).
+- Side-by-side or toggle view, a glossary drawer, and a difficulty slider.
+- Progress shows terms encountered/saved/mastered and listening minutes; no fake CEFR certification.
+
+**Quality and trust**
+
+- Label machine translation and level adaptation; keep the source accessible.
+- Native-speaker review for demo languages; validate technical terminology.
+- Do not claim fluency or a certified level; present the level as a target, not an assessment.
+- A translation is a derivative of the source; keep it private by default and respect the original license.
+
+**Acceptance criteria**
+
+- Given an English deck and target Spanish B1, produce a Markdown note, a 5-minute audio lesson, a bilingual glossary, and a 5-question quiz with separate content and language scores.
+- Technical terms and formulas survive adaptation and link back to source blocks.
+- Toggling source/target works per block; the original note is never overwritten.
+- The learner can ask "what does this word mean?" and get a target-language explanation plus the source equivalent.
+
+**Hackathon scope**
+
+- Text-first: one target language, one level, bilingual glossary, and target-language audio if a good voice exists.
+- No pronunciation scoring, no CEFR certification, no full-course translation.
+- Demo stretch: the same slide deck rendered as a Galician note plus English B1 audio (or vice versa).
 
 ---
 
@@ -316,6 +403,7 @@ source material → structured Markdown + diagrams → story → audio/video
 - Video scenes (slides + narration).
 - Exam generator.
 - Teacher mode.
+- Language Lens: one target language, text + audio, bilingual glossary (no pronunciation scoring).
 
 ### Won't have (explicitly cut)
 
@@ -353,6 +441,7 @@ source material → structured Markdown + diagrams → story → audio/video
 ```
 upload → validate → extract/OCR → layout + figures → chunk
        → LLM structure → validate → note.md + manifest
+       → optional language adaptation (target language, level, glossary)
        → story generation → scene split → TTS/render jobs
        → player + RAG index → quiz generation → attempts → mastery
 ```
@@ -361,16 +450,17 @@ upload → validate → extract/OCR → layout + figures → chunk
 
 | Entity | Key fields |
 |---|---|
-| `User` | id, locale, preferences, consent flags |
-| `Course` | id, owner, title, exam date, language |
+| `User` | id, UI locale, preferences, consent flags |
+| `LanguageProfile` | id, user, target language, variant, CEFR target, mode, gloss language |
+| `Course` | id, owner, title, exam date, source language, target language, level |
 | `SourceDocument` | id, course, filename, hash, page count, status |
 | `Block` | id, document, page, bbox, text, confidence, source type |
-| `Note` | id, course, markdown, version, protected ranges |
+| `Note` | id, course, markdown, version, language variant, protected ranges |
 | `Asset` | id, note, kind (diagram/audio/video), path, alt text |
-| `Story` | id, note, persona, parameters, markdown, citations |
-| `MediaJob` | id, story, kind, status, progress, cost, error |
-| `Lesson` | id, story, audio/video asset, transcript, chapters |
-| `Quiz` / `Question` / `Attempt` | objectives, type, options, answer, rubric, mastery delta |
+| `Story` | id, note, persona, parameters, language/level, markdown, citations |
+| `MediaJob` | id, story, kind, language, status, progress, cost, error |
+| `Lesson` | id, story, audio/video asset, transcript, chapters, language |
+| `Quiz` / `Question` / `Attempt` | objectives, type, options, answer, rubric, mastery delta, language score |
 | `Exam` / `Submission` | blueprint, variant, answers, grades, review status |
 | `Group` / `Challenge` / `Streak` | members, results, visibility, timezone |
 
@@ -406,6 +496,9 @@ upload → validate → extract/OCR → layout + figures → chunk
 | Learning | Pre/post quiz improvement | Measurable in demo |
 | Trust | Generated claims with citations | > 95% |
 | Social | Shares or challenges per demo user | > 1 |
+| Language learning | Target-language lessons completed | > 60% in demo |
+| Language learning | Terms saved or mastered per lesson | > 10 |
+| Language learning | Content and language scores reported separately | Always |
 | Cost | Cost per 10-minute lesson | Within budget |
 
 ---
@@ -418,6 +511,9 @@ upload → validate → extract/OCR → layout + figures → chunk
 | Poor OCR / broken formulas | Confidence scores, review queue, vision-model fallback, easy manual fixes |
 | Diagrams lost or mis-cropped | Layout detection, manual recrop, alt text, coverage report |
 | TTS quality in Galician | Test providers early; fallback Spanish; pronunciation lexicon |
+| Translation changes technical meaning | Terminology glossary, source side-by-side, native review, label machine translation |
+| Level mismatch or cognitive overload | Self-selected level, readability check, adjustable difficulty, bilingual mode |
+| Target-language TTS unavailable or poor | Provider matrix, text + translation fallback, limit demo languages |
 | Long generation times | Async jobs, previews, scene-level regeneration, caching |
 | Runaway API cost | Quotas, estimates before generation, caching, small demo scope |
 | Copyright concerns | Private by default, no public source sharing, takedown process |
@@ -431,12 +527,13 @@ upload → validate → extract/OCR → layout + figures → chunk
 ## 10. Open decisions
 
 1. **Demo subject:** mathematics (Gauss persona fits) or computer science (strong diagrams/code)?
-2. **Demo language:** Galician-first, Spanish-first, or English-first? Which TTS provider actually supports it?
+2. **Languages:** separate UI language, source language, and target learning language. Which combination is the demo? Which TTS voices are actually available?
 3. **MVP media:** audio only, or audio + one pre-rendered video clip?
 4. **Auth:** real accounts or a single demo session? Accounts add realism but cost time.
 5. **Social depth:** one class leaderboard/challenge, or a full feed? Recommend one challenge only.
 6. **Stack:** Python pipeline + Next frontend, or all-TypeScript? Decide before scaffolding.
 7. **Model/provider budget and keys:** who owns them, and what is the hard cap?
+8. **Language Lens scope:** which target language and CEFR level, and is it a Could-have or a demo stretch?
 
 ---
 
@@ -459,3 +556,4 @@ upload → validate → extract/OCR → layout + figures → chunk
 | Song / TikTok feed / comments / friends | §4.7 |
 | Championship against friends | §4.7 |
 | Streak, study hours, friends see results, reposts | §4.7 |
+| Notes/story/audio in another language to learn it | §4.10 |
