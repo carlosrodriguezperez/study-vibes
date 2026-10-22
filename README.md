@@ -7,6 +7,7 @@ Turn notes, slides, or photos into a short audio/video lesson — with as few st
 ## Documentation
 
 - [Product brief](docs/PRODUCT.md) — the narrow MVP, non-goals, demo, and architecture.
+- [Evaluation corpus](evals/README.md) — real lecture sources and the comparison checklist.
 - [Contributing](CONTRIBUTING.md) — branch, commit, PR, and security rules.
 - [Agent guidelines](AGENTS.md) — operating instructions for AI agents.
 
@@ -14,6 +15,9 @@ Turn notes, slides, or photos into a short audio/video lesson — with as few st
 
 ```
 docs/PRODUCT.md
+evals/README.md
+evals/sources/      (local only, gitignored)
+evals/results/      (gitignored)
 CONTRIBUTING.md
 AGENTS.md
 ```

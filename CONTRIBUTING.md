@@ -98,7 +98,7 @@ Format:
 Use the area that changed. Omit the scope only when the change is repo-wide.
 
 ```
-web, api, ingest, script, media, player, auth, db, docs, deps, infra
+web, api, ingest, script, media, player, auth, db, evals, docs, deps, infra
 ```
 
 Add new scopes in this file when a new area appears.
