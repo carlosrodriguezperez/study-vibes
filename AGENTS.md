@@ -4,7 +4,7 @@ Instructions for AI agents working in **study-vibes**. Humans should read `CONTR
 
 ## What this is
 
-Study Vibes turns notes, slides, or photos into a short audio/video lesson. The product bet is **time-to-first-play**: the student should be listening in under a minute, with no setup. The product brief is `docs/PRODUCT.md`; it is the scope source of truth.
+Study Vibes turns notes, slides, or photos into a short audio/video lesson, with an optional 3-question check. The product bet is **time-to-first-play**: the student should be listening in under a minute, with no setup. The product brief is `docs/PRODUCT.md`; it is the scope source of truth.
 
 ## Current state
 
@@ -42,7 +42,7 @@ git push -u origin feat/short-description
 
 - Follow **Conventional Commits** exactly as specified in `CONTRIBUTING.md`.
 - One logical change per commit. Do not stage with `git add -A` unless you have reviewed everything.
-- Use `type(scope): subject`; scopes currently include `web, api, ingest, script, media, player, auth, db, docs, deps, infra`.
+- Use `type(scope): subject`; scopes currently include `web, api, ingest, script, quiz, media, player, auth, db, evals, docs, deps, infra`.
 - Update `docs/PRODUCT.md` when behavior or scope changes, and this file when setup/commands change.
 - Squash-merge PRs; never force-push `main` or rewrite shared history.
 
@@ -57,8 +57,8 @@ git push -u origin feat/short-description
 
 ## Product guardrails
 
-- The core loop is: **upload → short script → audio/video → play**. Do not add features outside it.
-- Do not build quizzes, exams, social features, teacher tools, a full note editor, or interactive Q&A. They are explicitly deferred in `docs/PRODUCT.md` §1 and §10.
+- The core loop is: **upload → short script → audio/video → play**, with an optional 3-question check at the end.
+- Do not build exams, exam correction, social features, teacher tools, a full note editor, or interactive Q&A. A single optional 3-question check is the only assessment allowed; everything else is deferred in `docs/PRODUCT.md` §1 and §10.
 - Optimize the first 60 seconds: no signup wall, no empty dashboard, one primary action, sensible defaults.
 - Default to a **3-minute lesson** and **audio-first**; video is optional.
 - Mobile-first, screen-off playback, and resume are part of the core experience, not polish.

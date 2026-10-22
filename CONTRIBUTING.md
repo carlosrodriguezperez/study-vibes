@@ -98,7 +98,7 @@ Format:
 Use the area that changed. Omit the scope only when the change is repo-wide.
 
 ```
-web, api, ingest, script, media, player, auth, db, evals, docs, deps, infra
+web, api, ingest, script, quiz, media, player, auth, db, evals, docs, deps, infra
 ```
 
 Add new scopes in this file when a new area appears.
@@ -109,6 +109,7 @@ Add new scopes in this file when a new area appears.
 feat(ingest): extract text and figures from a PDF
 feat(script): generate a three-minute lesson script
 feat(media): synthesize audio segment by segment
+feat(quiz): generate three questions from a lesson
 fix(player): resume playback after screen lock
 docs: narrow the MVP to audio/video lessons
 refactor(api): isolate model provider behind an adapter

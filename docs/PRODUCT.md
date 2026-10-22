@@ -17,12 +17,19 @@ Study Vibes does two things:
 
 ### What is new
 
-Most tools summarize or chat. We turn the student's own material into a lean-back audio/video experience that can start in under a minute, on a phone, with no setup.
+Most tools summarize or chat. We turn the student's own material into a lean-back audio/video experience that can start in under a minute, on a phone, with no setup — and optionally end with a quick check that makes progress feel real.
+
+### Why this makes you want to study
+
+- **Tiny start:** press play; no setup, no decisions, no blank page.
+- **Immediate reward:** the first segment plays while the rest is still generating.
+- **Small commitment:** a 3-minute lesson feels doable even when tired.
+- **Lean-back:** listen or watch on the bus, while walking, or lying down.
+- **Clear finish:** a recap and an optional 3-question check, then "Done for now."
 
 ### Explicit non-goals (do not build now)
 
-- Quizzes, exams, exam correction, flashcards, spaced repetition.
-- Social feed, challenges, streaks, leaderboards.
+- Exams, exam correction, question banks, flashcards, spaced repetition.
 - Teacher/classroom tools.
 - Full Markdown editor or note-taking workspace.
 - Interactive Q&A during playback.
@@ -47,6 +54,7 @@ These can return later; they are not part of this build.
 | Upload/select → play | > 70% |
 | Median listening time | > 3 minutes |
 | 3-minute lesson completion | > 50% |
+| Optional 3-question check answered | > 30% |
 
 ---
 
@@ -74,7 +82,8 @@ These can return later; they are not part of this build.
 
 - Play/pause, speed, 15-second skip, transcript, captions.
 - Audio-first. Video (slides/diagrams + captions) is a bonus if time allows.
-- End screen: **"Keep going"** with the next segment/topic, or **"Done for now."** No quiz.
+- End screen: **"Keep going"** with the next segment/topic, or **"Done for now."**
+- Optional **3-question check** after the lesson: instant feedback and explanations, no grades, no stored scores.
 
 ---
 
@@ -103,6 +112,7 @@ These can return later; they are not part of this build.
 
 ### Could have
 
+- Optional 3-question end-of-lesson check with instant feedback.
 - Voice selection.
 - Simple cover image for the lesson.
 - "Repeat this segment" control.
@@ -110,6 +120,7 @@ These can return later; they are not part of this build.
 ### Won't have
 
 - Anything in §1 non-goals.
+- A full quiz/exam platform, question banks, or stored grades.
 - User accounts, courses, or libraries.
 - Editing the generated script in the UI.
 - Multi-user or real-time features.
@@ -123,7 +134,8 @@ These can return later; they are not part of this build.
 3. The first audio segment starts while the rest is still generating.
 4. If the video is pre-rendered, switch to the video view with a diagram and captions.
 5. Lock the phone; audio continues.
-6. Reopen; show resume and the "Done for now" state.
+6. Reopen; show resume. If the check is ready, answer one question from the optional 3-question check.
+7. End on the "Done for now" state.
 
 **One-line pitch:** "Your notes, turned into something you can press play on in under a minute."
 
@@ -133,7 +145,7 @@ These can return later; they are not part of this build.
 
 - **Frontend:** Next.js/React + Tailwind, mobile-first PWA.
 - **Backend:** FastAPI (Python) for PDF/OCR/LLM/TTS; one service.
-- **Pipeline:** `upload → extract/OCR → script JSON → TTS per segment → audio + transcript → optional video`.
+- **Pipeline:** `upload → extract/OCR → script JSON (+ optional quiz) → TTS per segment → audio + transcript → optional video`.
 - **Jobs:** one background worker with a status endpoint; poll from the client. Do not build a queue system unless needed.
 - **Storage:** local disk for the demo, S3-compatible storage if deployed.
 - **Database:** SQLite for MVP; one `Lesson` row is enough.
@@ -145,9 +157,9 @@ These can return later; they are not part of this build.
 
 | Entity | Fields |
 |---|---|
-| `Lesson` | id, source hash, filename, language, length preset, status, script JSON, audio URL, transcript, video URL (optional), created_at |
+| `Lesson` | id, source hash, filename, language, length preset, status, script JSON, quiz JSON (optional), audio URL, transcript, video URL (optional), created_at |
 
-No users, courses, quizzes, or social tables.
+No users, courses, or question-bank tables.
 
 ---
 
@@ -182,18 +194,17 @@ No users, courses, quizzes, or social tables.
 4. **Which TTS voice and language?** Pick one that sounds good and supports the demo language.
 5. **Stack:** use what the team already knows; do not split across two backends.
 6. **Default lesson length:** 3 minutes unless testing shows otherwise.
+7. **Quiz in the demo:** include the 3-question check, or keep the demo purely audio/video? Recommend showing one question.
 
 ---
 
 ## 10. Deferred ideas (do not build now)
 
-- Quizzes, exams, exam corrector.
+- Exams, exam generator/corrector, question banks, adaptive testing.
 - Pause-to-ask Q&A, voice conversation.
-- Social feed, comments, challenges, streaks, leaderboards.
 - Teacher mode and class analytics.
 - Full Markdown editing and version history.
 - Language-learning mode with CEFR levels and glossaries.
 - Flashcards, spaced repetition, exam planner.
-- Short vertical clips and share cards.
 
 Keep this list visible when new ideas appear: if it is not in §4, it waits.

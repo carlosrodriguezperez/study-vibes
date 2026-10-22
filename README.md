@@ -1,6 +1,6 @@
 # Study Vibes
 
-Turn notes, slides, or photos into a short audio/video lesson — with as few steps as possible between opening the app and pressing play.
+Turn notes, slides, or photos into a short audio/video lesson — with as few steps as possible between opening the app and pressing play, plus an optional quick check.
 
 **Status:** 48-hour hackathon project (ETSE 2026). Early development; the app is not runnable yet.
 
