@@ -107,11 +107,11 @@ Add new scopes in this file when a new area appears.
 
 ```
 feat(ingest): extract text and figures from a PDF
-feat(script): generate a three-minute lesson script
+feat(script): generate a three-minute episode script
 feat(media): synthesize audio segment by segment
-feat(quiz): generate three questions from a lesson
+feat(quiz): generate three questions from an episode
 fix(player): resume playback after screen lock
-docs: narrow the MVP to audio/video lessons
+docs: narrow the MVP to audio/video episodes
 refactor(api): isolate model provider behind an adapter
 chore(deps): add PDF parsing dependencies
 ```
@@ -119,9 +119,9 @@ chore(deps): add PDF parsing dependencies
 Breaking change:
 
 ```
-feat(api)!: replace lesson payload with versioned schema
+feat(api)!: replace episode payload with versioned schema
 
-BREAKING CHANGE: clients must read `lesson.schemaVersion` and migrate
+BREAKING CHANGE: clients must read `episode.schemaVersion` and migrate
 to the v2 media URLs.
 ```
 

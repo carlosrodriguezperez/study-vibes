@@ -1,8 +1,8 @@
 # Evaluation sources
 
-Real lecture material used to compare conversion and audio/video generation. Keep the corpus small, varied, and easy to reason about.
+Real lecture material used to compare conversion and entertaining episode generation. Keep the corpus small, varied, and easy to reason about.
 
-Script and quiz are generated with **DeepSeek V4.1 Flash** (OpenRouter); speech audio with **Gemini TTS**. Record which model and voice produced each result.
+Script and quiz are generated with **DeepSeek V4.1 Flash** (OpenRouter); speech audio with **Gemini TTS**. Record which model and voice produced each result. The episode is entertainment built on the source, not a summary of it — but added context is checked for truth, not just charm.
 
 ## Files
 
@@ -29,10 +29,14 @@ The set covers dense text, formulas, diagrams, scanned-looking pages, and two la
 For each source, check:
 
 1. **Extraction** — text coverage, page order, formulas, tables, and diagrams.
-2. **Script** — factual accuracy, coverage of the main ideas, and whether it sounds like a lesson rather than a read-through.
-3. **Audio** — pronunciation, pacing, and whether it is useful at 1× speed.
-4. **Video** — diagram relevance, caption timing, and readability at laptop distance.
-5. **Speed** — time to first playable segment and total generation time.
-6. **Cost** — tokens, TTS characters, and render time per lesson.
+2. **Hook** — do the first 15 seconds create a reason to keep listening, or do they announce the agenda?
+3. **Script** — does it sound like an episode rather than a read-through, and does the narrative actually carry the source's main ideas?
+4. **Coverage** — is every idea in the source's main thread present? Enrichment may not displace the syllabus.
+5. **Enrichment quality** — is the added context true, relevant, and clearly extra? One wrong "fun fact" fails the run.
+6. **Audio** — pronunciation, pacing, energy, and whether it is listenable at 1× speed.
+7. **Video** — diagram relevance, caption timing, and readability at laptop distance.
+8. **Speed** — time to first playable segment and total generation time.
+9. **Cost** — tokens, TTS characters, and render time per episode.
+10. **Pull** — would you open the source after hearing it? That is the product.
 
 Record results per file, not just an average; the biology scan and the math formulas will fail differently.
