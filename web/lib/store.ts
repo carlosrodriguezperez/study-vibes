@@ -38,7 +38,16 @@ export async function getEpisode(id: string): Promise<Episode | null> {
   if (!isValidId(id)) return null;
   try {
     const raw = await fs.readFile(path.join(episodeDir(id), "episode.json"), "utf8");
-    return JSON.parse(raw) as Episode;
+    const episode = JSON.parse(raw) as Episode;
+    // Version audio URLs by the text they were rendered from. Without this,
+    // a re-rendered segment keeps its old URL and the browser serves stale
+    // audio from cache.
+    episode.segments = episode.segments.map((segment) => {
+      if (!segment.audioUrl || !segment.textHash) return segment;
+      const base = segment.audioUrl.split("?")[0];
+      return { ...segment, audioUrl: `${base}?v=${segment.textHash}` };
+    });
+    return episode;
   } catch {
     return null;
   }

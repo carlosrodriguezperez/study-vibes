@@ -15,7 +15,8 @@ export async function GET(
       headers: {
         "content-type": "audio/wav",
         "content-length": String(bytes.length),
-        "cache-control": "public, max-age=31536000, immutable",
+        // Audio is re-rendered in place; never let a browser pin a stale take.
+        "cache-control": "no-store",
       },
     });
   } catch {
