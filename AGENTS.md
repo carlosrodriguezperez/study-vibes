@@ -8,12 +8,30 @@ Study Vibes turns notes, slides, or photos into a short, **entertaining** audio/
 
 ## Current state
 
-Documentation-only so far. The stack is settled: one Next.js app in `web/` (Node, no separate Python service), **DeepSeek V4.1 Flash via OpenRouter** for all text, and **Gemini TTS** for audio only. No application code is committed yet. Required keys are `OPENROUTER_API_KEY` and `GEMINI_API_KEY`, documented in `.env.example` and read from `.env`. Do not invent commands — add the real ones here as soon as the app exists.
+Runnable app in `web/`: upload or demo → episode script → audio → player with transcript, keyboard control, resume, and the optional check. **DeepSeek V4.1 Flash via OpenRouter** writes all text; **Gemini TTS** produces audio only. Required keys are `OPENROUTER_API_KEY` and `GEMINI_API_KEY`, documented in `.env.example` and read from the repo-root `.env`.
+
+## Commands
+
+```bash
+cd web
+npm install
+npm run dev            # http://localhost:3000
+npm run build          # production build
+npm start              # serve the build
+npm run lint
+npm run demo:prepare   # pre-render the demo episode (server running)
+npm run demo:fixture   # regenerate the demo script fixture from the corpus PDF
+```
+
+Gemini's free tier is **10 TTS requests per day per model**, so pre-render the demo before the pitch and let the pipeline skip segments that already have audio.
 
 ## Layout
 
 ```
-web/                the app (Next.js, laptop-first responsive web; not created yet)
+web/                the app (Next.js, laptop-first responsive web)
+web/lib/            pipeline, providers, storage, env loading
+web/scripts/        demo fixture and demo pre-render
+web/fixtures/       committed demo script (text only)
 docs/PRODUCT.md     narrow MVP, non-goals, demo, architecture
 evals/README.md     source corpus and comparison checklist
 evals/sources/      real lecture PDFs (committed corpus)
@@ -22,7 +40,7 @@ CONTRIBUTING.md     branching, commit, PR, and agent rules
 AGENTS.md           this file
 ```
 
-Code lives in `web/`. Document the entrypoint and the dev/build/test commands here once they exist.
+Code lives in `web/`; run every command from there. Generated audio stays in `web/.data/` and is gitignored.
 
 ## Git workflow
 
@@ -59,7 +77,7 @@ git push -u origin feat/short-description
 ## Product guardrails
 
 - The core loop is: **upload → topic → entertaining episode → play**, with an optional 3-question check at the end.
-- **Entertainment is the product, not decoration.** The episode must be worth listening to on its own: a hook in the first 15 seconds, a narrative, true extra context, and a recap that points back to the source. It is not a narrated summary of the slides.
+- **Entertainment is the product, not decoration.** The episode must be worth listening to on its own: a hook in the first 15 seconds, a narrative, a real joke and a callback, true extra context, and a recap that points back to the source. It is not a narrated summary of the slides, and it must never sound like a class.
 - **Enrichment must be true.** Added context is expected and wanted, but every added claim must be defensible, must never be attributed to the source or lecturer, and must be dropped if it cannot be verified. Never invent quotes, dates, studies, or numbers. A duller true episode beats a fun false one.
 - Do not build exams, exam correction, social features, teacher tools, a full note editor, or interactive Q&A. A single optional 3-question check is the only assessment allowed; everything else is deferred in `docs/PRODUCT.md` §1 and §10.
 - Optimize the first 60 seconds: no signup wall, no empty dashboard, one primary action, sensible defaults, hook before housekeeping.

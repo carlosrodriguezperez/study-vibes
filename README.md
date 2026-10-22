@@ -2,11 +2,11 @@
 
 Turn notes, slides, or photos into a short, **entertaining** audio/video episode about the topic — with as few steps as possible between opening the app and pressing play, plus an optional quick check.
 
-It is deliberately **not a summary tool**. Your material decides *what* the episode covers; the script decides *why you want to keep listening*. Expect a hook, a story, a true piece of context your slides did not have, and a recap that sends you back to the source.
+It is deliberately **not a summary tool**. Your material decides *what* the episode covers; the script decides *why you want to keep listening*. Expect a hook, a joke that actually lands, a story, a true piece of context your slides did not have, and a recap that sends you back to the source.
 
 Built **laptop-first**: a plain responsive web app, no install and no account. It still opens on a phone, but the layout, controls, and keyboard shortcuts target a 13–15" screen.
 
-**Status:** 48-hour hackathon project (ETSE 2026). Early development; the app is not runnable yet.
+**Status:** 48-hour hackathon project (ETSE 2026). Runs locally, end to end. Not deployed.
 
 ## Stack
 
@@ -26,6 +26,29 @@ Copy `.env.example` to `.env` and fill in both keys. `.env` is gitignored; never
 | `OPENROUTER_API_KEY` | DeepSeek V4.1 Flash — script, quiz, and image transcription |
 | `GEMINI_API_KEY` | Gemini TTS — audio only |
 
+## Run
+
+```bash
+cd web
+npm install
+npm run dev            # http://localhost:3000
+```
+
+Production: `npm run build && npm start`. Lint: `npm run lint`.
+
+## Demo
+
+The demo episode is pre-rendered on purpose, so the stage demo makes no live model calls.
+
+```bash
+npm run demo:prepare   # renders demo audio into .data/ (server must be running)
+npm run demo:fixture   # regenerates fixtures/demo-episode.json from the corpus PDF
+```
+
+Run `demo:prepare` once before the pitch, with the dev server up. After that, "Try the demo episode" is instant and works even if the providers are down.
+
+> **Quota:** Gemini's free tier allows **10 TTS requests per day per model**. Each episode costs one request per segment. Pre-render early, and do not regenerate finished audio — the pipeline skips segments that already have audio.
+
 ## Documentation
 
 - [Product brief](docs/PRODUCT.md) — the narrow MVP, non-goals, demo, and architecture.
@@ -36,7 +59,10 @@ Copy `.env.example` to `.env` and fill in both keys. `.env` is gitignored; never
 ## Repository layout
 
 ```
-web/                the app (Next.js); not created yet
+web/                the app (Next.js); run it from here
+web/lib/            pipeline, providers, storage
+web/scripts/        demo:fixture and demo:prepare
+web/fixtures/       committed demo script (text only)
 docs/PRODUCT.md
 evals/README.md
 evals/sources/      committed lecture PDFs
@@ -45,4 +71,4 @@ CONTRIBUTING.md
 AGENTS.md
 ```
 
-Setup, run, test, and lint commands will be documented here once the app is committed.
+Generated audio lives in `web/.data/` and is gitignored.

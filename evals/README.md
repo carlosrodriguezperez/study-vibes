@@ -30,13 +30,14 @@ For each source, check:
 
 1. **Extraction** — text coverage, page order, formulas, tables, and diagrams.
 2. **Hook** — do the first 15 seconds create a reason to keep listening, or do they announce the agenda?
-3. **Script** — does it sound like an episode rather than a read-through, and does the narrative actually carry the source's main ideas?
-4. **Coverage** — is every idea in the source's main thread present? Enrichment may not displace the syllabus.
-5. **Enrichment quality** — is the added context true, relevant, and clearly extra? One wrong "fun fact" fails the run.
-6. **Audio** — pronunciation, pacing, energy, and whether it is listenable at 1× speed.
-7. **Video** — diagram relevance, caption timing, and readability at laptop distance.
-8. **Speed** — time to first playable segment and total generation time.
-9. **Cost** — tokens, TTS characters, and render time per episode.
-10. **Pull** — would you open the source after hearing it? That is the product.
+3. **Humor** — is there a real joke, a memorable analogy, and a callback, or is it a lesson with adjectives? Would a student repeat the joke to a friend?
+4. **Script** — does it sound like an episode rather than a read-through, and does the narrative actually carry the source's main ideas?
+5. **Coverage** — is every idea in the source's main thread present? Enrichment may not displace the syllabus.
+6. **Enrichment quality** — is the added context true, relevant, and clearly extra? One wrong "fun fact" fails the run.
+7. **Audio** — pronunciation, pacing, energy, and whether it is listenable at 1× speed.
+8. **Video** — diagram relevance, caption timing, and readability at laptop distance.
+9. **Speed** — time to first playable segment and total generation time.
+10. **Cost** — tokens, TTS characters, and render time per episode.
+11. **Pull** — would you open the source after hearing it? That is the product.
 
 Record results per file, not just an average; the biology scan and the math formulas will fail differently.

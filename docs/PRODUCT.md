@@ -28,6 +28,7 @@ The product is **laptop-first**. It is a plain responsive web app: no install, n
 ### Why this makes you want to study
 
 - **A hook, not a syllabus.** The first 15 seconds create a question the student wants answered, instead of listing what will be covered.
+- **It is actually funny.** A real joke, an absurd but accurate analogy, and a callback at the end. Humour is part of the product, not a garnish.
 - **Curiosity gap.** The episode withholds the payoff until the concept has earned it.
 - **Earned interest.** A true story, a real application, or a counterexample makes a dry definition matter.
 - **Tiny start:** press play; no setup, no decisions, no blank page.
@@ -43,7 +44,7 @@ The product is **laptop-first**. It is a plain responsive web app: no install, n
 - A full language-learning curriculum.
 - Native mobile apps, payments, institutional SSO.
 - Fabricated facts, invented quotes, studies, dates, or "fun facts" nobody can stand behind.
-- A meme or comedy generator. Entertaining means engaging, not clownish.
+- A meme or joke generator. Jokes are wanted, but they must serve the topic rather than replace it.
 
 These can return later; they are not part of this build.
 
@@ -84,20 +85,22 @@ These can return later; they are not part of this build.
 
 ### The episode
 
-- **Structure:** a cold open (10–15 s) that poses a question or drops into a small story → 3–5 key ideas from the source threaded through that narrative → at least one true enrichment moment → a recap that maps back to the material → optional check.
+- **Structure:** a cold open (10–15 s) that drops the listener mid-scene → 3–5 key ideas from the source threaded through that narrative → at least one true enrichment moment → a recap that maps back to the material and calls back to the opening joke → optional check.
 - **Coverage rule:** every idea in the source's main thread appears. Enrichment may not displace the syllabus.
 - **Enrichment rule:** added context must be true, clearly extra, and never attributed to the source. If it cannot be verified, cut it.
 - **Default length:** 3 minutes, with options for 10 minutes or full coverage.
-- **Tone:** conversational, curious, a little dramatic. Never a dry read-through of bullet points.
+- **Tone:** a funny, curious friend — not a lecturer. Direct "tú", short sentences, asides, at least one real joke and one callback. If a line could be read aloud by a bored teacher, it is wrong.
 
 A summary and an episode, on the same two pages of notes:
 
 | | Summary (what we do not build) | Episode (what we build) |
 |---|---|---|
-| Opening | "This document covers sets, subsets, and operations." | "A set with no elements. Does it exist? Mathematics says yes — and that tiny decision breaks half the intuitions you have about collections." |
+| Opening | "This document covers sets, subsets, and operations." | "El conjunto vacío es la caja de cartón que compraste para ordenar tu vida y nunca llenaste. Diferencia clave: la tuya no es única. La del matemático sí." |
 | Middle | Definitions, in order | The same definitions, but each one answers a question the story raised |
 | Added context | None | Why the empty set is defined that way; a real case where the distinction matters |
-| Ending | "That is all." | "Go back to slide 2 — you will now read Definition 2.1 differently." |
+| Ending | "That is all." | "Vuelve a la diapositiva 2 y lee la Definición 2.1 con otra cara. Y no, tu caja sigue sin ser un conjunto." |
+
+If nobody on the team laughs when the script is read aloud, it is not finished. One real joke and one callback are part of the definition of done, not a nice-to-have.
 
 ### The player
 
@@ -252,12 +255,13 @@ Rules for both:
 - **Auth:** anonymous session, no signup.
 - **Positioning:** an entertaining episode about the topic, enriched with true extra context — not a faithful summary of the slides.
 - **Artifact name:** the generated piece is an **episode**, not a lesson or a lecture.
+- **Tone:** a funny host talking to one student, with jokes, a callback, and zero classroom phrasing. Because of this, the episode never opens with an agenda.
 
 ### Open
 
 1. **Audio-first or video in the live demo?** Recommend audio-first with one pre-rendered video.
 2. **PDF only, or images too?** Images are high-value; test image transcription early.
-3. **Which TTS voice and host persona?** Pick one voice by ear on the Spanish corpus; decide whether the host has a name and a point of view.
+3. **Which TTS voice?** Pick one prebuilt voice by ear on the Spanish corpus; it has to sound amused, not solemn.
 4. **How much enrichment per episode?** Recommend one or two moments, always verified, plus a recap pointer.
 5. **Default episode length:** 3 minutes unless testing shows otherwise.
 6. **Quiz in the demo:** include the 3-question check, or keep it audio-only? Recommend showing one question.
