@@ -20,7 +20,7 @@ npm run build          # production build
 npm start              # serve the build
 npm run lint
 npm run demo:prepare   # pre-render the demo episode (server running)
-npm run demo:fixture   # regenerate the demo script fixture from the corpus PDF
+npm run demo:fixture   # writes fixtures/demo-episode.generated.json (never the demo script)
 npm run draft          # text-only script preview: no audio, no TTS quota
 npm run draft -- path/to.pdf
 ```

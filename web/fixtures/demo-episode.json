@@ -1,59 +1,50 @@
 {
-  "title": "El conjunto vacío y otras rarezas",
-  "topic": "Conjuntos: definiciones y operaciones",
+  "title": "Tus ex y el conjunto vacío",
+  "topic": "Conjuntos: Spotify, Cantor y un par de chistes",
   "language": "es",
   "segments": [
     {
       "id": 1,
-      "heading": "Hook: la mochila invisible",
-      "text": "Tienes doce pestañas abiertas, tres cafés y una pregunta existencial: ¿puede existir una mochila que no contenga nada? Pues sí, y los matemáticos la adoran. Se llama conjunto vacío, se escribe con un círculo tachado, y es el único conjunto sin elementos. Hoy veremos por qué ese cero absoluto es la estrella del capítulo 2. Y te adelanto: al final volveremos a esa mochila. Sigue conmigo."
+      "heading": "Todo se explica con dos círculos",
+      "text": "¿Y si te dijera que toda tu vida, tus gustos y hasta tus ex se pueden explicar con un par de círculos cruzados? A simple vista, la teoría de conjuntos suena al tema más seco del universo, pero en realidad es el «multiverso» de las matemáticas. Es básicamente el arte de cotillear, clasificar y meter cosas en bolsas digitales. Piénsalo: Spotify no hace más que teoría de conjuntos para crearte una playlist; es literalmente la intersección entre «canciones que te gustan» y «canciones que escucha la gente igual de rara que tú»."
     },
     {
       "id": 2,
-      "heading": "Subconjuntos y partes: la familia crece",
-      "text": "Un conjunto es una colección de cosas. Si todo lo de A está en B, A es subconjunto de B, y si además son distintos, es estrictamente contenido. Hasta ahí fácil. Pero aquí viene el giro: el conjunto de todos los subconjuntos de A se llama conjunto de partes, P(A). Si A tiene tres elementos, P(A) tiene ocho. Es como una familia que invita a todos sus parientes, incluidos el vacío y ella misma. Y ojo: P(A ∩ B) = P(A) ∩ P(B), pero con la unión no siempre funciona. La diapositiva 2 te lo muestra con un ejemplo."
+      "heading": "Cantor y el drama del infinito",
+      "text": "Además, la historia de cómo nació esto tiene un drama tremendo. La inventó un matemático alemán llamado Georg Cantor a finales del siglo XIX, hacia 1874. El tío se puso a pensar en el infinito y descubrió algo que le voló la cabeza a todo el mundo: ¡hay infinitos que son más grandes que otros infinitos! La comunidad matemática de la época se lo tomó tan mal que lo trataron de loco, su propio mentor lo llamó «corruptor de la juventud» y el pobre Cantor acabó desquiciado. O sea, estudiar conjuntos no solo mola: es que literalmente rompió la matriz de la matemática moderna."
     },
     {
       "id": 3,
-      "heading": "Operaciones: intersección, unión y complemento",
-      "text": "Intersección: lo que está en ambos a la vez, como los amigos en común. Unión: lo que está en uno o en otro, sin repetir. Si no comparten nada, son disjuntos. El complementario de A en X es X menos A. Y hay un detalle jugoso: la unión y la intersección se distribuyen, pero no como uno espera. A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C), y A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C). Eso sí, A ∪ (B ∩ C) no siempre es igual a (A ∪ B) ∩ C. La diapositiva 2, ejemplo 2.2(vi), te lo deja claro. Además, las leyes de De Morgan: el complemento de la unión es la intersección de complementos, y viceversa."
-    },
-    {
-      "id": 4,
-      "heading": "Cierre: producto cartesiano y vuelta a la mochila",
-      "text": "Y para terminar, el producto cartesiano: pares ordenados (a, b) con a en A y b en B. Si A tiene dos elementos y B tiene tres, A × B tiene seis. Ojo: A × B no es lo mismo que B × A, salvo casos triviales. ¿Y la mochila vacía? Pues A × ∅ = ∅, porque no hay ningún par posible. Ahí tienes la conexión: el vacío se multiplica y lo aniquila todo. Vuelve a la diapositiva 2 y lee la Definición 2.1 con otra cara: el conjunto vacío es único, y el producto cartesiano con él es vacío. Y ahora, cierra alguna pestaña."
+      "heading": "Chistes y vuelta a la realidad",
+      "text": "Para que veas que tiene su guasa, aquí van un par de chistes de conjuntos. ¿Qué le dice un conjunto vacío a otro? «No somos nada». ¿Por qué el conjunto A rompió con el conjunto B? Porque no tenían nada en común, su intersección era nula. Un matemático va a un restaurante y pide una pizza. El camarero le pregunta: «¿Se la corto en 4 o en 8 trozos?». El matemático responde: «En 4, por favor, no creo que pueda comerme 8». Vale, este es de fracciones, pero seguro que a Cantor le habría sacado una sonrisa. Al final, aprender conjuntos es como aprender el lenguaje secreto con el que se programa la lógica, la informática y las bases de datos del mundo entero. No estás estudiando números, estás estudiando cómo organizamos la realidad. ¿Hay algún tema específico de conjuntos que te dé especial pereza, como las uniones, intersecciones o los infinitos de Cantor, para intentar buscarle la vuelta divertida?"
     }
   ],
   "quiz": [
     {
-      "question": "¿Qué es el conjunto de partes de A?",
+      "question": "Según el episodio, ¿qué hace Spotify para crearte una playlist?",
       "options": [
-        "El conjunto de todos los subconjuntos de A",
-        "El conjunto de los elementos que no están en A",
-        "La unión de A con su complementario"
+        "Una intersección entre tus canciones y las de gente parecida a ti",
+        "Una unión de todos los artistas que existen",
+        "Un conjunto vacío hasta que pulsas play"
       ],
       "answerIndex": 0,
-      "explanation": "P(A) contiene todos los subconjuntos de A, incluidos el vacío y el propio A."
+      "explanation": "La playlist es la intersección entre «canciones que te gustan» y «canciones que escucha la gente igual de rara que tú»."
     },
     {
-      "question": "En el episodio, ¿a qué se comparó el conjunto vacío?",
+      "question": "¿Qué descubrió Cantor pensando en el infinito?",
       "options": [
-        "A una mochila que no contiene nada",
-        "A una caja llena de sorpresas",
-        "A un círculo perfecto"
+        "Que todos los infinitos son iguales",
+        "Que hay infinitos más grandes que otros",
+        "Que el infinito no existe"
       ],
-      "answerIndex": 0,
-      "explanation": "Se usó la analogía de una mochila invisible para introducir el conjunto vacío."
+      "answerIndex": 1,
+      "explanation": "Cantor demostró que hay infinitos de distintos tamaños; la comunidad matemática de su época lo tomó muy mal."
     },
     {
-      "question": "¿Cuál es el resultado de A × ∅?",
-      "options": [
-        "El conjunto vacío",
-        "El conjunto A",
-        "Un conjunto con un par (a, ∅)"
-      ],
+      "question": "¿Qué le dice un conjunto vacío a otro?",
+      "options": ["No somos nada", "Nos falta un elemento", "Te intersecco"],
       "answerIndex": 0,
-      "explanation": "No hay ningún par posible porque el segundo conjunto no tiene elementos."
+      "explanation": "Es el chiste del episodio: dos conjuntos vacíos que, efectivamente, no contienen nada."
     }
   ]
 }

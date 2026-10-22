@@ -1,10 +1,11 @@
-// Generates fixtures/demo-episode.json by running a real PDF through the
-// pipeline. Requires the dev server to be running.
+// Generates fixtures/demo-episode.generated.json by running a real PDF through
+// the pipeline. Requires the dev server to be running.
 //
 //   node scripts/make-demo-fixture.mjs [path-to.pdf]
 //
-// The demo never calls an LLM at runtime: it loads this committed script and
-// only synthesizes audio. This script exists so the fixture can be refreshed.
+// It never overwrites fixtures/demo-episode.json, which is the hand-written
+// demo script. The demo itself loads that committed script at runtime and only
+// synthesizes audio. This script exists so model output can be compared.
 
 import { promises as fs } from "node:fs";
 import path from "node:path";
@@ -50,7 +51,7 @@ async function main() {
     quiz: episode.quiz,
   };
 
-  const out = path.join(process.cwd(), "fixtures", "demo-episode.json");
+  const out = path.join(process.cwd(), "fixtures", "demo-episode.generated.json");
   await fs.mkdir(path.dirname(out), { recursive: true });
   await fs.writeFile(out, `${JSON.stringify(fixture, null, 2)}\n`);
 
