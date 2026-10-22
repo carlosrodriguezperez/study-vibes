@@ -26,6 +26,8 @@ npm run draft -- path/to.pdf
 ```
 
 The same preview is available at `/draft` in the browser; it never records audio.
+
+On a fresh machine, follow `docs/INSTALL.md` and verify with `npm run doctor`.
 ```
 
 Gemini's free tier is **10 TTS requests per day per model**, so pre-render the demo before the pitch and let the pipeline skip segments that already have audio.
@@ -38,6 +40,7 @@ web/lib/            pipeline, providers, storage, env loading
 web/scripts/        demo fixture and demo pre-render
 web/fixtures/       committed demo script (text only)
 docs/PRODUCT.md     narrow MVP, non-goals, demo, architecture
+docs/INSTALL.md     fresh-clone setup for humans and agents
 docs/DEMO.md        pre-flight checklist, 2-minute script, fallbacks
 evals/README.md     source corpus and comparison checklist
 evals/sources/      real lecture PDFs (committed corpus)

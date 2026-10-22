@@ -44,6 +44,7 @@ The demo episode is pre-rendered on purpose, so the stage demo makes no live mod
 npm run demo:prepare   # renders demo audio into .data/ (server must be running)
 npm run demo:fixture   # writes fixtures/demo-episode.generated.json (never the demo script)
 npm run draft          # text-only preview of the script (no audio, no quota)
+npm run doctor         # checks Node, deps, keys, server, demo audio
 ```
 
 Or open **`/draft`** in the browser to read the script, regenerate it, or try another PDF — it never records audio.
@@ -55,6 +56,7 @@ Run `demo:prepare` once before the pitch, with the dev server up. After that, "T
 ## Documentation
 
 - [Product brief](docs/PRODUCT.md) — the narrow MVP, non-goals, demo, and architecture.
+- [Install and run](docs/INSTALL.md) — agent-ready setup from a fresh clone, with a verification command.
 - [Demo runbook](docs/DEMO.md) — pre-flight checklist, the 2-minute script, and fallbacks.
 - [Evaluation corpus](evals/README.md) — real lecture sources and the comparison checklist.
 - [Contributing](CONTRIBUTING.md) — branch, commit, PR, and security rules.

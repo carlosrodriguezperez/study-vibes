@@ -9,7 +9,8 @@
     "lint": "eslint",
     "demo:prepare": "node scripts/prepare-demo.mjs",
     "demo:fixture": "node scripts/make-demo-fixture.mjs",
-    "draft": "node scripts/draft.mjs"
+    "draft": "node scripts/draft.mjs",
+    "doctor": "node scripts/doctor.mjs"
   },
   "dependencies": {
     "next": "16.4.2",
