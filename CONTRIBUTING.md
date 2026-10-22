@@ -23,7 +23,7 @@ Examples:
 
 ```
 feat/pdf-to-audio
-feat/mobile-player
+feat/desktop-player
 fix/ocr-page-order
 docs/commit-conventions
 chore/repo-setup
@@ -98,7 +98,7 @@ Format:
 Use the area that changed. Omit the scope only when the change is repo-wide.
 
 ```
-web, api, ingest, script, quiz, media, player, auth, db, evals, docs, deps, infra
+web, api, ingest, script, tts, quiz, media, player, auth, db, evals, docs, deps, infra
 ```
 
 Add new scopes in this file when a new area appears.

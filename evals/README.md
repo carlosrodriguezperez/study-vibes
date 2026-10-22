@@ -2,6 +2,8 @@
 
 Real lecture material used to compare conversion and audio/video generation. Keep the corpus small, varied, and easy to reason about.
 
+Script and quiz are generated with **DeepSeek V4.1 Flash** (OpenRouter); speech audio with **Gemini TTS**. Record which model and voice produced each result.
+
 ## Files
 
 | File | Subject | Language | Pages | Size |
@@ -29,7 +31,7 @@ For each source, check:
 1. **Extraction** — text coverage, page order, formulas, tables, and diagrams.
 2. **Script** — factual accuracy, coverage of the main ideas, and whether it sounds like a lesson rather than a read-through.
 3. **Audio** — pronunciation, pacing, and whether it is useful at 1× speed.
-4. **Video** — diagram relevance, caption timing, and readability on a phone.
+4. **Video** — diagram relevance, caption timing, and readability at laptop distance.
 5. **Speed** — time to first playable segment and total generation time.
 6. **Cost** — tokens, TTS characters, and render time per lesson.
 

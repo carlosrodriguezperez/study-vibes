@@ -8,11 +8,12 @@ Study Vibes turns notes, slides, or photos into a short audio/video lesson, with
 
 ## Current state
 
-Greenfield hackathon project. No application code, package manifest, tests, or CI yet. The first commit is an empty scaffold. Do not invent or assume framework commands — add the real ones here as soon as the stack exists.
+Documentation-only so far. The stack is settled: one Next.js app in `web/` (Node, no separate Python service), **DeepSeek V4.1 Flash via OpenRouter** for all text, and **Gemini TTS** for audio only. No application code is committed yet. Required keys are `OPENROUTER_API_KEY` and `GEMINI_API_KEY`, documented in `.env.example` and read from `.env`. Do not invent commands — add the real ones here as soon as the app exists.
 
 ## Layout
 
 ```
+web/                the app (Next.js, laptop-first responsive web)
 docs/PRODUCT.md     narrow MVP, non-goals, demo, architecture
 evals/README.md     source corpus and comparison checklist
 evals/sources/      real lecture PDFs (committed corpus)
@@ -21,7 +22,7 @@ CONTRIBUTING.md     branching, commit, PR, and agent rules
 AGENTS.md           this file
 ```
 
-When code is added, put it under a clear top-level app/package directory and document the entrypoint here.
+Code lives in `web/`. Document the entrypoint and the dev/build/test commands here once they exist.
 
 ## Git workflow
 
@@ -42,7 +43,7 @@ git push -u origin feat/short-description
 
 - Follow **Conventional Commits** exactly as specified in `CONTRIBUTING.md`.
 - One logical change per commit. Do not stage with `git add -A` unless you have reviewed everything.
-- Use `type(scope): subject`; scopes currently include `web, api, ingest, script, quiz, media, player, auth, db, evals, docs, deps, infra`.
+- Use `type(scope): subject`; scopes currently include `web, api, ingest, script, tts, quiz, media, player, auth, db, evals, docs, deps, infra`.
 - Update `docs/PRODUCT.md` when behavior or scope changes, and this file when setup/commands change.
 - Squash-merge PRs; never force-push `main` or rewrite shared history.
 
@@ -61,5 +62,6 @@ git push -u origin feat/short-description
 - Do not build exams, exam correction, social features, teacher tools, a full note editor, or interactive Q&A. A single optional 3-question check is the only assessment allowed; everything else is deferred in `docs/PRODUCT.md` §1 and §10.
 - Optimize the first 60 seconds: no signup wall, no empty dashboard, one primary action, sensible defaults.
 - Default to a **3-minute lesson** and **audio-first**; video is optional.
-- Mobile-first, screen-off playback, and resume are part of the core experience, not polish.
+- **Laptop-first, not mobile-first:** design for a 13–15" screen and a keyboard. Full keyboard control, a two-pane player/transcript layout, and background-tab playback are part of the core experience, not polish. It must still render on a phone, but that is not the target.
+- **DeepSeek V4.1 Flash is text-only.** Never assume it can produce speech; TTS is always a separate provider, and the demo must not rely on a live provider call.
 - Prefer one service and one background worker over a complex architecture.
