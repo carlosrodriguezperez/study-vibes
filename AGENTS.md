@@ -38,6 +38,7 @@ web/lib/            pipeline, providers, storage, env loading
 web/scripts/        demo fixture and demo pre-render
 web/fixtures/       committed demo script (text only)
 docs/PRODUCT.md     narrow MVP, non-goals, demo, architecture
+docs/DEMO.md        pre-flight checklist, 2-minute script, fallbacks
 evals/README.md     source corpus and comparison checklist
 evals/sources/      real lecture PDFs (committed corpus)
 evals/results/      generated outputs (gitignored)

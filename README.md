@@ -55,6 +55,7 @@ Run `demo:prepare` once before the pitch, with the dev server up. After that, "T
 ## Documentation
 
 - [Product brief](docs/PRODUCT.md) — the narrow MVP, non-goals, demo, and architecture.
+- [Demo runbook](docs/DEMO.md) — pre-flight checklist, the 2-minute script, and fallbacks.
 - [Evaluation corpus](evals/README.md) — real lecture sources and the comparison checklist.
 - [Contributing](CONTRIBUTING.md) — branch, commit, PR, and security rules.
 - [Agent guidelines](AGENTS.md) — operating instructions for AI agents.
