@@ -46,6 +46,8 @@ npm run demo:fixture   # regenerates fixtures/demo-episode.json from the corpus 
 npm run draft          # text-only preview of the script (no audio, no quota)
 ```
 
+Or open **`/draft`** in the browser to read the script, regenerate it, or try another PDF — it never records audio.
+
 Run `demo:prepare` once before the pitch, with the dev server up. After that, "Try the demo episode" is instant and works even if the providers are down.
 
 > **Quota:** Gemini's free tier allows **10 TTS requests per day per model**. Each episode costs one request per segment. Pre-render early, and do not regenerate finished audio — the pipeline skips segments that already have audio.

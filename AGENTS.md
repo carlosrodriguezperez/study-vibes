@@ -25,6 +25,9 @@ npm run draft          # text-only script preview: no audio, no TTS quota
 npm run draft -- path/to.pdf
 ```
 
+The same preview is available at `/draft` in the browser; it never records audio.
+```
+
 Gemini's free tier is **10 TTS requests per day per model**, so pre-render the demo before the pitch and let the pipeline skip segments that already have audio.
 
 ## Layout

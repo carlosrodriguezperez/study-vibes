@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Uploader from "./uploader";
 
 export default function Home() {
@@ -19,6 +20,17 @@ export default function Home() {
       <div className="mt-10">
         <Uploader />
       </div>
+
+      <p className="mt-4 text-sm text-muted">
+        Want to read the script first?{" "}
+        <Link
+          href="/draft"
+          className="text-accent underline underline-offset-4 hover:text-foreground"
+        >
+          Preview the text without generating audio
+        </Link>
+        .
+      </p>
 
       <dl className="mt-12 grid gap-6 text-sm sm:grid-cols-3">
         <div>
