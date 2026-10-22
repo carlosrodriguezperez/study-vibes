@@ -1,559 +1,199 @@
 # Study Vibes — Product Brief
 
-> **One-liner:** Upload your class slides and get an editable study guide, a story-driven audio/video lesson you can interrupt and question, and a quiz that proves you learned it — then make studying social.
->
-> **Language Lens:** study the same material in a language you are learning, with level-aware notes, audio, glossaries, and practice — not just a raw translation.
+> **One-liner:** Turn your notes, slides, or photos into a short audio/video lesson — and make pressing play the easiest part of studying.
 
-**Status:** Hackathon concept (ETSE 2026). No implementation yet. This document refines the original brainstorm into a buildable product definition.
+**Status:** 48-hour hackathon project (ETSE 2026). Scope is deliberately narrow. No implementation yet.
 
 ---
 
-## 1. Vision
+## 1. The only thing we build
 
-### Problem
+Students usually have the material. The hard part is **starting**: opening the slides, deciding what matters, and reading passively when tired.
 
-- Students receive dense PDFs, slide decks, scanned notes, and photos, then waste hours re-reading them passively.
-- Knowledge is locked in presentation formats: diagrams cannot be searched, corrected, or reused.
-- Generic AI summarizers produce fluent but ungrounded text. Students cannot tell what came from the source and what was invented.
-- Studying alone is boring, while social apps compete for the same attention without teaching anything.
+Study Vibes does two things:
 
-### Insight
+1. **Convert raw material into a short, listenable/watchable lesson.**
+2. **Remove every step between "I should study" and pressing play.**
 
-The atomic unit of studying should not be a summary — it should be **a source-grounded, editable study artifact** that can be read, listened to, questioned, practiced, and shared. Markdown is the right canonical format because it is open, diffable, portable, and easy for both humans and models to edit.
+### What is new
 
-### Solution
+Most tools summarize or chat. We turn the student's own material into a lean-back audio/video experience that can start in under a minute, on a phone, with no setup.
 
-A study companion with one pipeline:
+### Explicit non-goals (do not build now)
 
-```
-source material → structured Markdown + diagrams → story → audio/video
-      → interactive Q&A → quiz/exam → feedback → social motivation
-```
+- Quizzes, exams, exam correction, flashcards, spaced repetition.
+- Social feed, challenges, streaks, leaderboards.
+- Teacher/classroom tools.
+- Full Markdown editor or note-taking workspace.
+- Interactive Q&A during playback.
+- A full language-learning curriculum.
+- Native mobile apps, payments, institutional SSO.
 
-### Product principles
-
-1. **Grounded first.** Every generated claim links back to a source section or is explicitly labeled as added context.
-2. **Open by default.** The core artifact is Markdown with local assets; users can export and leave.
-3. **Low floor, high ceiling.** A non-technical student finishes in three clicks; a technical student can edit every block and prompt.
-4. **Active over passive.** Listening is interrupted by questions, checkpoints, and retrieval practice.
-5. **Social without leaking.** Share results, clips, and streaks — not private course material unless explicitly chosen.
-6. **Accessible and local.** Galician, Spanish, and English; captions, transcripts, keyboard navigation, dyslexia-friendly reading mode.
-7. **Language as a lens.** The same material can be studied in a target language with scaffolding, without sacrificing technical accuracy.
+These can return later; they are not part of this build.
 
 ---
 
-## 2. Personas and jobs
+## 2. User and moment
 
-| Persona | Context | Job to be done | What success looks like |
-|---|---|---|---|
-| **Ana, 20 — non-technical student** | Exam in 3 days, 200 slides | "Turn this into something I can listen to on the bus and actually remember." | First lesson in under 5 minutes; passes end quiz. |
-| **Xoán, 22 — CS student** | Wants control and diagrams | "Give me clean Markdown I can fix, link, and study from." | Edits notes, keeps cropped diagrams, exports to his own tools. |
-| **Uxía, 21 — creator / social learner** | Studies with friends | "Make studying competitive and shareable." | Shares a clip, challenges friends, keeps a streak. |
-| **Professor / TA (added)** | Prepares class material | "Generate practice and grade consistently." | Builds a quiz/exam from their slides; reviews AI grading. |
-| **Lía, 21 — exchange / language learner** | Takes a subject in a second language | "Use my course material to improve the language, not just translate it." | Reads/listens at her level, saves key terms, passes the content quiz. |
+**Persona:** Ana, 20. Exam in three days. She has a 40-slide PDF and 20 minutes on the bus. She is tired, opens her phone, and does not want to organize anything.
 
----
+**Job to be done:** "Turn this into something I can press play on right now."
 
-## 3. End-to-end journey
+**Success moment:** She uploads or picks a sample, taps once, and hears a useful lesson before she has time to get distracted.
 
-1. **Create a course** (e.g., "Mathematics II") and upload PDFs, slides, photos, or notes.
-2. **Watch the conversion** with visible stages: extracting → OCR → detecting diagrams → structuring → validating.
-3. **Review and edit** the generated Markdown side-by-side with the original page; fix OCR, reorder sections, annotate.
-4. **Choose a learning experience**: narrator/persona, story style, length, source and target language, proficiency level, difficulty, and which concepts are mandatory.
-5. **Generate media** (audio first, video optional) in the source or target language, and read the editable story/script.
-6. **Study interactively**: listen/watch, pause to ask by voice or text, get cited answers and diagrams in the language you chose.
-7. **Practice**: answer checkpoint and end-of-lesson questions; receive explanations and a weak-topic map.
-8. **Consolidate**: auto-generate a Markdown lecture, flashcards, and a spaced-review plan.
-9. **Compete and share**: post a short clip or result, challenge a friend, keep the streak alive.
-
-**Three-minute demo path:** one real slide deck → corrected Markdown with a cropped diagram → Gauss-narrated audio → interrupt with a spoken question → end quiz with an image question → shareable result card.
+| Metric | Target |
+|---|---|
+| Time from open to first audio | < 60 seconds |
+| Upload/select → play | > 70% |
+| Median listening time | > 3 minutes |
+| 3-minute lesson completion | > 50% |
 
 ---
 
-## 4. Feature specification
+## 3. Core experience
 
-### 4.1 Source ingestion and PDF → Markdown
+### The first 60 seconds
 
-**Goal:** Convert heterogeneous class material into a clean, editable, source-linked Markdown bundle without losing diagrams or meaning.
+- **No signup wall.** The user gets value before creating an account, or uses an anonymous session.
+- **No empty dashboard.** The landing page has one upload area and one demo lesson.
+- **One primary action per screen.** Upload → "Start studying" → play.
+- **Smart defaults.** Length, voice, and structure are preselected. The user can change them, but does not have to.
+- **Micro-session by default.** Start with a 3-minute lesson, not the whole course.
+- **Progressive playback.** The first segment starts as soon as it is ready; the rest renders in the background.
+- **Mobile-first and screen-off friendly.** Audio keeps playing when the phone is locked.
+- **Resume.** "Continue where you left off" is always one tap away.
 
-**Inputs**
+### The lesson
 
-- PDF (native text and scanned), PPTX, DOCX, plain text, Markdown.
-- Images: photos of slides, whiteboards, handwritten notes (JPG/PNG/HEIC).
-- Pasted text and URLs (added).
-- Audio recordings of lectures (added, phase 2).
+- A short script: a hook, 3–5 key ideas, and a closing recap.
+- Faithful to the source; no invented facts. Diagrams and slide images are used when available.
+- Default structure: **3 minutes**, with options for 10 minutes or full coverage.
+- Tone: clear and conversational, not a dry read-through of bullet points.
 
-**Conversion pipeline**
+### The player
 
-1. **Validate and normalize** — file type, page/size limits, malware scan, duplicate detection.
-2. **Extract** — native text where available; OCR only where needed. Preserve slide notes and hidden slides.
-3. **Analyze layout** — detect titles, bullets, columns, tables, formulas, code, figures, and captions.
-4. **Crop and describe diagrams** — save each figure as a separate asset with bounding box, caption, alt text, and a link to its source page. Deduplicate repeated images.
-5. **Chunk semantically** — by slide or section, with stable IDs used later for citations.
-6. **Structure with an LLM** — normalize heading hierarchy, merge fragments, expand abbreviations, fix OCR noise, preserve formulas as LaTeX. **Never invent missing content**; mark gaps as `[missing / unclear]`.
-7. **Validate** — coverage check against source pages, unresolved-reference check, confidence scores per block.
-8. **Emit a bundle**:
-   ```
-   note.md
-   assets/diagram-001.png
-   manifest.json   # source hash, page map, block confidence, model/version
-   source.pdf      # private, original
-   ```
-
-**Editing experience**
-
-- Split view: source page on the left, Markdown on the right; clicking a paragraph highlights its source region.
-- Markdown toolbar: headings, lists, tables, code, LaTeX, image insert, callouts.
-- Edit image alt text and captions; recrop diagrams; replace an image.
-- Protect sections from regeneration; lock manually corrected blocks.
-- Version history with diff and restore.
-- Export: Markdown zip, PDF, HTML, Anki/Quizlet (added).
-
-**Quality rules**
-
-- Low-confidence OCR/formula blocks are visibly flagged for review.
-- A "coverage" indicator shows which source pages are represented.
-- Regeneration only touches changed sections and never silently overwrites user edits.
-
-**Acceptance criteria**
-
-- A 30-slide text PDF becomes a structured note with headings and at least the major diagrams in under 2 minutes.
-- Every generated section maps to a source page.
-- User edits survive regeneration.
+- Play/pause, speed, 15-second skip, transcript, captions.
+- Audio-first. Video (slides/diagrams + captions) is a bonus if time allows.
+- End screen: **"Keep going"** with the next segment/topic, or **"Done for now."** No quiz.
 
 ---
 
-### 4.2 Study workspace
+## 4. MVP for the hackathon
 
-**Goal:** Organize material by course and turn notes into an active study system.
-
-- Courses, folders, tags, full-text and semantic search.
-- **Concept map**: extracted concepts and prerequisite links; color-coded mastery.
-- **Multi-length summaries**: one-line, one-minute, ten-minute, full notes.
-- **Flashcards and glossary** generated from notes, with source links.
-- **Formula sheet** and **code snippets** views for technical subjects.
-- **Spaced repetition** (FSRS/SM-2) with a daily review queue.
-- **Exam planner**: enter the exam date and available hours; the app schedules coverage and review.
-- **Teach-back mode** (added): the student explains a concept aloud; the AI grades understanding and names gaps.
-- **Socratic mode** (added): the AI asks questions instead of giving answers.
-- **Diagram explainer** (added): click any figure to get a labeled, interactive explanation.
-
----
-
-### 4.3 Story and narrative generation
-
-**Goal:** Turn dry notes into a memorable narrative without sacrificing accuracy.
-
-**Parameters**
-
-- Persona/narrator (see below), tone (funny, dramatic, calm, exam-focused), audience level, length, source language, target language and proficiency, and mandatory concepts.
-- Optional web research for context, always with separate citations.
-- Serialized chapters with a "series bible" for consistent characters and callbacks.
-
-**Flagship persona: "Gauss narrates the story"**
-
-- Gauss acts as a first-person guide through the history of the concepts.
-- Connects each idea to the problem it was invented to solve, with anecdotes and analogies.
-- Clearly labels historical dramatization and invented dialogue; never fabricates quotes attributed to real people.
-- Other templates: detective mystery, sports commentary, space mission, courtroom debate, dialogue between concepts, ELI5.
-
-**Grounding**
-
-- Each paragraph carries citations to source blocks; added analogies are marked as `context` rather than `source`.
-- Language adaptations preserve meaning: machine translation is labeled, technical terms stay linked to the source, and simplification never removes required concepts.
-- A fact-check pass can flag unsupported claims and optionally verify with web sources.
-- The generated story is **editable Markdown**, not a black-box audio file. Users can fix a sentence and regenerate only that scene.
-
-**Outputs**
-
-- `story.md`, a scene/storyboard list, and diagram references per scene.
-- In language mode, a bilingual glossary keyed to the story and source blocks.
-- Optional learning objectives and a "what you should be able to explain" checklist.
-
----
-
-### 4.4 Audio and video generation
-
-**Goal:** Produce engaging study media from the story, async and at controlled cost.
-
-**Audio**
-
-- TTS with selectable voices, speed, pauses, and pronunciation lexicon for Galician/Spanish terms.
-- Language-learning audio: target-language voice, slower default pacing, clear pauses, optional repeat-after-narrator, and a dual-language transcript.
-- Chapter markers, transcript, and background music with ducking.
-- Offline download and playback.
-
-**Video**
-
-- Scene composition from headings, diagrams, and narration: slide/ken-burns visuals, captions, optional presenter avatar.
-- Two formats: 16:9 lesson and 9:16 short clip.
-- Auto-generated **shorts**: hook, three key points, and a call-to-action to take the quiz.
-- Localization/dubbing for UI and lesson languages, including target learning languages; human review for pronunciation-critical content.
-
-**Generation behavior**
-
-- Long jobs run asynchronously with stage progress, ETA, cancel, and retry.
-- Cache by content hash + voice/style settings; regenerate only changed scenes.
-- Show an estimated cost/time before generating; enforce per-user quotas.
-- Every media item has captions and a transcript; diagrams have audio descriptions.
-
----
-
-### 4.5 Interactive playback and Q&A
-
-**Goal:** Make passive media active.
-
-- Player with synced transcript, chapters, and diagrams.
-- **Pause to ask** by text or push-to-talk; speech-to-text; answer is grounded in the current lesson, the course, and optionally the web.
-- Answers include citations and can show the relevant diagram; "take me to that part" seeks the audio.
-- Intent shortcuts: *explain simpler*, *give an example*, *why does this matter*, *is this on the exam*, *translate this*, *say it slower*, *what does this word mean*, *explain the grammar*.
-- In language mode, ask in either language; answer in the target language by default, with a one-click "show source language" toggle.
-- **Checkpoint questions** every few minutes; a wrong answer rewinds to the relevant segment.
-- **Hands-free voice conversation** with barge-in (added).
-- Questions and answers can be appended to notes; recurring confusion becomes a weak-topic entry.
-- Resume across devices; playback speed; offline/PWA.
-- Microphone audio is processed transiently and not retained unless the user opts in.
-
----
-
-### 4.6 Assessment: quizzes, exams, and correction
-
-**Goal:** Close the loop with retrieval practice and credible grading.
-
-**Lesson quizzes**
-
-- Generated from learning objectives, not just from sentences.
-- Question types: multiple choice, true/false, short answer, numeric, ordering, matching, label-the-diagram, oral answer.
-- Image-based questions reuse cropped diagrams.
-- Distractors encode plausible misconceptions; explanations link to source blocks.
-- Adaptive difficulty based on concept mastery; spaced review of missed items.
-- **Language mode** adds separate checks: vocabulary in context, listening comprehension, and short production. Score subject mastery and language separately; do not penalize content knowledge for grammar mistakes.
-
-**Exam generator**
-
-- Blueprint controls: topics, coverage, Bloom levels, difficulty mix, number of questions, points, time limit.
-- Produces variants A/B, answer key, grading rubric, and a coverage report showing unused topics.
-- Optional import of past exams to infer style ("exam radar") — clearly a prediction, not a leak.
-
-**Exam corrector**
-
-- Upload photos/PDFs of handwritten or typed answers.
-- OCR + per-question rubric grading with partial credit and confidence.
-- Human review/override; feedback and model answer per question.
-- Batch grading, class analytics, CSV export.
-- Integrity note: self-study mode is open; graded mode can enable lockdown, but this is not the MVP.
-
-**End-of-session Markdown lecture**
-
-- Auto-generated lecture notes combining the source, the story, questions asked, corrections, and weak topics.
-- Open Markdown, downloadable, editable, and appendable to the course.
-- Includes "questions you still get wrong" and a next-review date.
-
----
-
-### 4.7 Social and gamification
-
-**Goal:** Use social motivation without turning studying into a popularity contest.
-
-- **Study feed** (TikTok-style, opt-in): vertical clips generated from lessons, with likes, comments, reposts, and "study with me" posts.
-- **Challenges**: async 1v1 quiz duels; friend and class championships; weekly leaderboards.
-- **Streaks ("racha")**: daily study, lessons completed, quizzes; timezone-aware; freeze tokens.
-- **Study hours and XP**: visible personal dashboard; badges such as *Diagram Detective*, *7-day Streak*, *Exam Ace*.
-- **Results sharing**: friends see quiz/exam results only with explicit consent; anonymous mode available.
-- **Group study rooms** (added): synchronized playback, shared notes, live quiz.
-- **Anti-toxicity**: no public ranking by grades by default; report/block; rate limits; private-by-default courses.
-- **Class invite codes** for teachers and study groups.
-
----
-
-### 4.8 Web interface and UX
-
-**Goal:** One coherent app that a non-technical student can use without a tutorial.
-
-- **Landing/demo**: try a sample deck without signing up.
-- **Onboarding**: goal (exam date or language goal), subject, UI language, source language, target study language and level, upload.
-- **Dashboard**: continue studying, courses, streak, upcoming exams, weak topics.
-- **Project tabs**: Source · Notes · Story · Media · Practice · Analytics.
-- **Editor**: split source/notes, slash commands, preview, version history.
-- **Generation panel**: style presets, estimated time/cost, progress, cancel.
-- **Player**, **quiz**, **exam builder**, and **grading queue** as first-class pages.
-- **Teacher mode** (added): classes, assignments, anonymous confusion heatmap, cohort analytics.
-- **Settings**: UI language, study/target language, accessibility, privacy, export/delete all data, connected accounts.
-- Responsive/PWA, dark mode, WCAG 2.2 AA, keyboard shortcuts, screen-reader labels, dyslexia-friendly font option.
-- Empty states and a seeded demo course so the app never looks broken during a demo.
-
----
-
-### 4.9 Added high-value ideas
-
-- **Learning profile ("study DNA")**: preferred modality, session length, best time of day, recurring mistakes.
-- **Study buddy agent**: proactive plan, reminders, and accountability check-ins.
-- **Lecture recorder**: record a class (with consent), transcribe, align to slides, and generate notes.
-- **Formula lab / code walkthrough**: interactive variables, graphs, or step-through execution for technical material.
-- **Citation-first mode**: every sentence can reveal its source, with an "unsupported" filter.
-- **Offline exam-week pack**: download lessons, transcripts, and quizzes for unreliable internet.
-- **Integrity-aware sharing**: share notes and clips, never the copyrighted source deck by default.
-- **Import/export bridges** (added): Google Drive, Notion, Anki, Quizlet, plain Markdown zip.
-- **Collaborative notes** (added): comment, suggest, and merge edits with friends.
-
----
-
-### 4.10 Language-learning mode ("Language Lens")
-
-**Goal:** Reuse the same course material as comprehensible input to learn a target language, without lowering technical accuracy or forcing the learner to abandon the subject.
-
-**Key distinction:** UI language, source language, and target language are independent. A Galician student can keep the UI in Galician, study chemistry slides written in English, and generate B1 Spanish audio to learn Spanish.
-
-**Modes**
-
-- **Translation/access:** a faithful target-language version for comprehension; no simplification.
-- **Immersion:** notes, story, and audio mainly in the target language, adapted to the chosen level; technical terms are glossed rather than removed.
-- **Bilingual:** source and target side by side; toggle per paragraph; click any term for a gloss.
-- **Sandwich (lower levels):** target-language narration with brief source-language glosses at key points.
-
-**Inputs and parameters**
-
-- Target language and variant (e.g., `pt-PT` vs `pt-BR`, `en-GB` vs `en-US`).
-- Proficiency target, starting with CEFR A2–C1 (extend later).
-- Mode, gloss language, audio speed, glossary density, and whether key terms stay visible in the source language.
-- Optional subject goal (exam date/curriculum) so language practice does not drift from the course.
-
-**Adaptation rules**
-
-- **Simplify language, not concepts.** Never drop learning objectives, formulas, or required technical distinctions.
-- Preserve technical terms, names, units, code, and formulas. Each glossary entry includes the source term, target term, pronunciation, definition in both languages, an example sentence, and a source link.
-- Aim for comprehensible input: roughly 90–95% known vocabulary at the chosen level; flag and gloss the rest.
-- Prefer short sentences, high-frequency vocabulary, and explicit connectors. Explain idioms and cultural references instead of translating them literally.
-- Adapt examples to the learner's context only when meaning is preserved; label cultural substitutions.
-- Maintain terminology consistency across the course and across lessons.
-
-**Media and playback**
-
-- Target-language TTS with slower pacing, clear pauses, and optional repeat-after-narrator.
-- Dual subtitles (target + source), click-to-translate transcript, and word-level lookup.
-- Optional shadowing/pronunciation practice with speech feedback (phase 2; not MVP).
-- At lower levels, mix target narration with short source-language glosses rather than switching the whole lesson.
-
-**Practice**
-
-- Content quiz in the target language plus a language quiz (vocabulary in context, grammar, listening comprehension).
-- **Separate mastery scores** for subject and language; grammar mistakes must not hide content understanding.
-- Auto-built vocabulary deck from encountered terms, with spaced repetition and Anki export.
-- "Explain it back" in the target language; feedback addresses meaning first, then language.
-- Reading/listening checks ask for the main idea, not word-for-word reproduction.
-
-**Q&A**
-
-- Ask in either language; answer in the target language by default, with a one-click "show source language" toggle.
-- Word/phrase lookup, grammar explanation, slower replay, and simpler paraphrase.
-- Do not silently switch to the source language when the learner struggles; offer scaffolding first.
-
-**UX**
-
-- A language badge on every lesson; switching target language or level regenerates derived artifacts only (the source note stays intact).
-- Side-by-side or toggle view, a glossary drawer, and a difficulty slider.
-- Progress shows terms encountered/saved/mastered and listening minutes; no fake CEFR certification.
-
-**Quality and trust**
-
-- Label machine translation and level adaptation; keep the source accessible.
-- Native-speaker review for demo languages; validate technical terminology.
-- Do not claim fluency or a certified level; present the level as a target, not an assessment.
-- A translation is a derivative of the source; keep it private by default and respect the original license.
-
-**Acceptance criteria**
-
-- Given an English deck and target Spanish B1, produce a Markdown note, a 5-minute audio lesson, a bilingual glossary, and a 5-question quiz with separate content and language scores.
-- Technical terms and formulas survive adaptation and link back to source blocks.
-- Toggling source/target works per block; the original note is never overwritten.
-- The learner can ask "what does this word mean?" and get a target-language explanation plus the source equivalent.
-
-**Hackathon scope**
-
-- Text-first: one target language, one level, bilingual glossary, and target-language audio if a good voice exists.
-- No pronunciation scoring, no CEFR certification, no full-course translation.
-- Demo stretch: the same slide deck rendered as a Galician note plus English B1 audio (or vice versa).
-
----
-
-## 5. MVP for a 48-hour hackathon
-
-### Must have (demo-critical)
+### Must have
 
 | # | Capability | Why |
 |---|---|---|
-| 1 | Upload PDF and convert to editable Markdown with page links | Core promise and differentiator |
-| 2 | Crop at least one diagram and reference it in the note | Proves diagram-aware conversion |
-| 3 | Generate a story script with a selectable persona (Gauss default) | Memorable, demo-friendly |
-| 4 | Text-to-speech audio lesson with transcript | Multi-modal payoff |
-| 5 | Player with pause-to-ask (text; voice if time allows) and cited answers | The "wow" interaction |
-| 6 | End-of-lesson quiz with explanations | Learning loop closure |
-| 7 | Minimal dashboard + seeded demo course | Usable narrative |
-| 8 | Shareable result card or clip | Social hook |
+| 1 | Upload PDF or image; pick a demo lesson | Entry point |
+| 2 | Extract text and OCR photos | Source fidelity |
+| 3 | Generate a short lesson script with segments | The actual content |
+| 4 | Text-to-speech audio with transcript | Core output |
+| 5 | Mobile-first player with speed and resume | Core experience |
+| 6 | Progressive generation: play segment 1 while the rest renders | Makes "under 60 seconds" real |
+| 7 | Seeded demo + pre-generated fallback | Demo safety |
+| 8 | Clear error/fallback state | Avoid dead ends |
 
 ### Should have
 
-- Voice input for questions.
-- One short vertical clip.
-- Streak/leaderboard for a single class group.
-- Export Markdown zip.
+- Video: slide/diagram visuals with captions.
+- Length presets: 3 min / 10 min / full.
+- Output-language selector, including one target language for listening practice.
+- Download audio + transcript.
+- Background/lock-screen audio.
 
 ### Could have
 
-- Video scenes (slides + narration).
-- Exam generator.
-- Teacher mode.
-- Language Lens: one target language, text + audio, bilingual glossary (no pronunciation scoring).
+- Voice selection.
+- Simple cover image for the lesson.
+- "Repeat this segment" control.
 
-### Won't have (explicitly cut)
+### Won't have
 
-- Full exam corrector with handwritten OCR.
-- Global social network, moderation at scale.
-- Multi-user real-time collaboration.
-- Native mobile apps.
-- Payment, institutional SSO.
-
-### Demo script (3 minutes)
-
-1. Upload a real class PDF; show conversion stages and a corrected diagram.
-2. Edit one paragraph and regenerate only that scene.
-3. Play the Gauss narration; pause and ask a spoken question; show the citation and diagram.
-4. Take the end quiz; answer one image question wrong; show the explanation and rewound segment.
-5. Show the generated Markdown lecture + share card.
+- Anything in §1 non-goals.
+- User accounts, courses, or libraries.
+- Editing the generated script in the UI.
+- Multi-user or real-time features.
 
 ---
 
-## 6. Proposed architecture (to confirm with the team)
+## 5. Demo script (2 minutes)
 
-### Stack
+1. Open on a phone. Show the single upload area and the demo button.
+2. Tap the demo (or upload a real PDF). Show the conversion stages.
+3. The first audio segment starts while the rest is still generating.
+4. If the video is pre-rendered, switch to the video view with a diagram and captions.
+5. Lock the phone; audio continues.
+6. Reopen; show resume and the "Done for now" state.
 
-- **Frontend:** Next.js (App Router) + TypeScript + Tailwind + shadcn/ui; PDF.js for source view; WaveSurfer for audio.
-- **Backend:** FastAPI (Python) for document/AI pipeline; Postgres + pgvector; Redis + Celery/RQ for jobs; S3/MinIO for files.
-- **Alternative:** a single Next.js app with route handlers if the team is JavaScript-only. Choose one early; do not split the pipeline across both.
-- **AI:** provider-agnostic adapter; structured JSON outputs; embeddings for RAG; citations stored per generated block.
-- **Documents:** PyMuPDF/pdfplumber, python-pptx, Tesseract, vision-model fallback for hard scans.
-- **Media:** TTS provider with a Galician voice; FFmpeg or Remotion for video; render worker separate from the web process.
-- **Auth:** Auth.js or Clerk; email magic link plus OAuth.
-- **Deploy:** Docker Compose locally; frontend on Vercel; API/worker on Fly.io/Render; managed object storage.
+**One-line pitch:** "Your notes, turned into something you can press play on in under a minute."
 
-### Processing flow
+---
 
-```
-upload → validate → extract/OCR → layout + figures → chunk
-       → LLM structure → validate → note.md + manifest
-       → optional language adaptation (target language, level, glossary)
-       → story generation → scene split → TTS/render jobs
-       → player + RAG index → quiz generation → attempts → mastery
-```
+## 6. Proposed architecture (keep it minimal)
 
-### Core data model
+- **Frontend:** Next.js/React + Tailwind, mobile-first PWA.
+- **Backend:** FastAPI (Python) for PDF/OCR/LLM/TTS; one service.
+- **Pipeline:** `upload → extract/OCR → script JSON → TTS per segment → audio + transcript → optional video`.
+- **Jobs:** one background worker with a status endpoint; poll from the client. Do not build a queue system unless needed.
+- **Storage:** local disk for the demo, S3-compatible storage if deployed.
+- **Database:** SQLite for MVP; one `Lesson` row is enough.
+- **Auth:** none for MVP. Anonymous session ID in local storage.
+- **Caching:** hash the source file + settings; reuse generated audio for the demo.
+- **Cost/latency:** generate segment-by-segment, cap lesson length, pre-render the demo.
 
-| Entity | Key fields |
+### Minimal data model
+
+| Entity | Fields |
 |---|---|
-| `User` | id, UI locale, preferences, consent flags |
-| `LanguageProfile` | id, user, target language, variant, CEFR target, mode, gloss language |
-| `Course` | id, owner, title, exam date, source language, target language, level |
-| `SourceDocument` | id, course, filename, hash, page count, status |
-| `Block` | id, document, page, bbox, text, confidence, source type |
-| `Note` | id, course, markdown, version, language variant, protected ranges |
-| `Asset` | id, note, kind (diagram/audio/video), path, alt text |
-| `Story` | id, note, persona, parameters, language/level, markdown, citations |
-| `MediaJob` | id, story, kind, language, status, progress, cost, error |
-| `Lesson` | id, story, audio/video asset, transcript, chapters, language |
-| `Quiz` / `Question` / `Attempt` | objectives, type, options, answer, rubric, mastery delta, language score |
-| `Exam` / `Submission` | blueprint, variant, answers, grades, review status |
-| `Group` / `Challenge` / `Streak` | members, results, visibility, timezone |
+| `Lesson` | id, source hash, filename, language, length preset, status, script JSON, audio URL, transcript, video URL (optional), created_at |
 
-### Engineering guardrails
-
-- One `.env.example`; never commit keys. Server-side provider keys by default.
-- Every long operation is a job with status, retries, and idempotency.
-- Store model name/version and prompt version with generated artifacts for reproducibility.
-- Cost and latency budgets per generation; cache aggressively.
-- Add a tiny evaluation set of real slides to catch conversion regressions.
+No users, courses, quizzes, or social tables.
 
 ---
 
-## 7. Privacy, copyright, and trust
+## 7. Quality and safety
 
-- Course material is **private by default**; public sharing is opt-in and excludes the original file.
-- Users must own or have permission to upload material; provide a takedown path.
-- Export and delete-all-data must work; no training on user content without explicit consent.
-- Voice recordings are transient by default; clear consent before recording a lecture or a friend.
-- Generated content is labeled; citations are always one click away.
-- Leaderboards and grade sharing are opt-in to avoid pressure and harassment.
-
----
-
-## 8. Success metrics
-
-| Area | Metric | Target for demo |
-|---|---|---|
-| Activation | Upload → first playable lesson | > 70% |
-| Time to value | 30-slide deck → first lesson | < 5 min |
-| Engagement | Lessons completed per active user | > 1 per session |
-| Active learning | Questions asked per lesson | > 2 |
-| Learning | Pre/post quiz improvement | Measurable in demo |
-| Trust | Generated claims with citations | > 95% |
-| Social | Shares or challenges per demo user | > 1 |
-| Language learning | Target-language lessons completed | > 60% in demo |
-| Language learning | Terms saved or mastered per lesson | > 10 |
-| Language learning | Content and language scores reported separately | Always |
-| Cost | Cost per 10-minute lesson | Within budget |
+- Keep the source file private by default; delete it after processing if the user asks.
+- Do not publish or share the original material without explicit action.
+- Mark generated audio/video as AI-generated.
+- If OCR or extraction fails, show the source page and ask for a clearer photo rather than inventing content.
+- Only use material the user has permission to upload.
 
 ---
 
-## 9. Risks and mitigations
+## 8. Risks and mitigations
 
 | Risk | Mitigation |
 |---|---|
-| Hallucinated content | Source-grounded generation, citations, "unsupported" flags, fact-check pass |
-| Poor OCR / broken formulas | Confidence scores, review queue, vision-model fallback, easy manual fixes |
-| Diagrams lost or mis-cropped | Layout detection, manual recrop, alt text, coverage report |
-| TTS quality in Galician | Test providers early; fallback Spanish; pronunciation lexicon |
-| Translation changes technical meaning | Terminology glossary, source side-by-side, native review, label machine translation |
-| Level mismatch or cognitive overload | Self-selected level, readability check, adjustable difficulty, bilingual mode |
-| Target-language TTS unavailable or poor | Provider matrix, text + translation fallback, limit demo languages |
-| Long generation times | Async jobs, previews, scene-level regeneration, caching |
-| Runaway API cost | Quotas, estimates before generation, caching, small demo scope |
-| Copyright concerns | Private by default, no public source sharing, takedown process |
-| Scope creep in 48h | Hard MVP cut list; audio before video; text questions before voice |
-| Social toxicity | Opt-in sharing, no grade leaderboards by default, report/block |
-| Privacy of recordings | Consent, transient processing, retention controls |
-| Demo failure | Seeded demo course, pre-generated fallback assets, offline recording |
+| Bad OCR or broken layout | Vision-model fallback, show source page, allow re-upload |
+| TTS latency kills the demo | Segment-by-segment generation, pre-rendered demo, cache |
+| Video rendering is too slow | Audio-first; video optional; render only one scene if needed |
+| Scope creep | The non-goals list is a hard gate |
+| Demo failure | Seeded demo, pre-generated assets, offline recording |
+| Cost blowup | Length caps, caching, one voice, one model |
 
 ---
 
-## 10. Open decisions
+## 9. Open decisions
 
-1. **Demo subject:** mathematics (Gauss persona fits) or computer science (strong diagrams/code)?
-2. **Languages:** separate UI language, source language, and target learning language. Which combination is the demo? Which TTS voices are actually available?
-3. **MVP media:** audio only, or audio + one pre-rendered video clip?
-4. **Auth:** real accounts or a single demo session? Accounts add realism but cost time.
-5. **Social depth:** one class leaderboard/challenge, or a full feed? Recommend one challenge only.
-6. **Stack:** Python pipeline + Next frontend, or all-TypeScript? Decide before scaffolding.
-7. **Model/provider budget and keys:** who owns them, and what is the hard cap?
-8. **Language Lens scope:** which target language and CEFR level, and is it a Could-have or a demo stretch?
+1. **Audio-first or video in the live demo?** Recommend audio-first with one pre-rendered video.
+2. **PDF only, or phone photos too?** Photos are high-value; test OCR early.
+3. **Login or anonymous?** Recommend anonymous for the demo.
+4. **Which TTS voice and language?** Pick one that sounds good and supports the demo language.
+5. **Stack:** use what the team already knows; do not split across two backends.
+6. **Default lesson length:** 3 minutes unless testing shows otherwise.
 
 ---
 
-## Appendix: Traceability to the original notes
+## 10. Deferred ideas (do not build now)
 
-| Original idea | Where refined |
-|---|---|
-| PDF slides → editable Markdown | §4.1 |
-| Web interface for tech and non-tech users | §4.8 |
-| Markdown with cropped diagrams for later media | §4.1, §4.4 |
-| Markdown → short story for engagement | §4.3 |
-| Story → audio/video, web research, images | §4.3, §4.4 |
-| Markdown → audio/video for studying | §4.4, §4.5 |
-| Pause to ask by text or microphone, image answers | §4.5 |
-| End-of-media quiz with images | §4.6 |
-| Markdown lecture at the end, open format | §4.6 |
-| Quiz from notes | §4.6 |
-| Exam generator and corrector | §4.6 |
-| "Gauss narrates the story" | §4.3 |
-| Song / TikTok feed / comments / friends | §4.7 |
-| Championship against friends | §4.7 |
-| Streak, study hours, friends see results, reposts | §4.7 |
-| Notes/story/audio in another language to learn it | §4.10 |
+- Quizzes, exams, exam corrector.
+- Pause-to-ask Q&A, voice conversation.
+- Social feed, comments, challenges, streaks, leaderboards.
+- Teacher mode and class analytics.
+- Full Markdown editing and version history.
+- Language-learning mode with CEFR levels and glossaries.
+- Flashcards, spaced repetition, exam planner.
+- Short vertical clips and share cards.
+
+Keep this list visible when new ideas appear: if it is not in §4, it waits.

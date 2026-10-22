@@ -1,12 +1,12 @@
 # Study Vibes
 
-Turn class slides and notes into an editable study guide, a story-driven audio/video lesson you can interrupt and question, and a quiz that proves you learned it.
+Turn notes, slides, or photos into a short audio/video lesson — with as few steps as possible between opening the app and pressing play.
 
-**Status:** early development — ETSE 2026 hackathon. The app is not runnable yet.
+**Status:** 48-hour hackathon project (ETSE 2026). Early development; the app is not runnable yet.
 
 ## Documentation
 
-- [Product brief](docs/PRODUCT.md) — vision, feature specs, MVP, architecture, risks.
+- [Product brief](docs/PRODUCT.md) — the narrow MVP, non-goals, demo, and architecture.
 - [Contributing](CONTRIBUTING.md) — branch, commit, PR, and security rules.
 - [Agent guidelines](AGENTS.md) — operating instructions for AI agents.
 

@@ -22,8 +22,8 @@ These rules apply to humans and AI agents. The goal is a clean, reviewable histo
 Examples:
 
 ```
-feat/pdf-to-markdown
-feat/interactive-player
+feat/pdf-to-audio
+feat/mobile-player
 fix/ocr-page-order
 docs/commit-conventions
 chore/repo-setup
@@ -98,7 +98,7 @@ Format:
 Use the area that changed. Omit the scope only when the change is repo-wide.
 
 ```
-web, api, ingest, notes, story, media, player, quiz, exam, social, auth, db, docs, deps, infra
+web, api, ingest, script, media, player, auth, db, docs, deps, infra
 ```
 
 Add new scopes in this file when a new area appears.
@@ -106,10 +106,11 @@ Add new scopes in this file when a new area appears.
 ### Examples
 
 ```
-feat(ingest): convert PDF slides to editable Markdown
-feat(player): pause playback and answer spoken questions
-fix(quiz): keep diagram images when regenerating a question
-docs(product): clarify MVP cut list
+feat(ingest): extract text and figures from a PDF
+feat(script): generate a three-minute lesson script
+feat(media): synthesize audio segment by segment
+fix(player): resume playback after screen lock
+docs: narrow the MVP to audio/video lessons
 refactor(api): isolate model provider behind an adapter
 chore(deps): add PDF parsing dependencies
 ```
