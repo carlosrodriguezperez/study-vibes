@@ -41,6 +41,7 @@ web/scripts/        demo fixture and demo pre-render
 web/fixtures/       committed demo script (text only)
 docs/PRODUCT.md     narrow MVP, non-goals, demo, architecture
 docs/INSTALL.md     fresh-clone setup for humans and agents
+docs/DEMO-SETUP.md  plain-language setup for the presenting laptop
 docs/DEMO.md        pre-flight checklist, 2-minute script, fallbacks
 evals/README.md     source corpus and comparison checklist
 evals/sources/      real lecture PDFs (committed corpus)
