@@ -1,0 +1,49 @@
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+
+# Node / JavaScript
+node_modules/
+.next/
+.nuxt/
+dist/
+build/
+out/
+coverage/
+*.tsbuildinfo
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Generated and user data
+data/
+uploads/
+storage/
+media/
+generated/
+*.sqlite
+*.sqlite3
+*.db
+*.log
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
