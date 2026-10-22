@@ -31,12 +31,15 @@ venv/
 .coverage
 htmlcov/
 
-# Generated and user data
-data/
-uploads/
-storage/
-media/
-generated/
+# Generated and user data.
+# Root-only patterns stay anchored so source paths like web/app/api/media/
+# are not accidentally ignored. `.data/` is app-local (web/.data).
+/data/
+/uploads/
+/storage/
+/media/
+/generated/
+.data/
 evals/results/
 *.sqlite
 *.sqlite3

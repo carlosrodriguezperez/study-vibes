@@ -1,0 +1,59 @@
+{
+  "title": "El conjunto vacío y otras rarezas",
+  "topic": "Conjuntos: definiciones y operaciones",
+  "language": "es",
+  "segments": [
+    {
+      "id": 1,
+      "heading": "Hook: la mochila invisible",
+      "text": "Tienes doce pestañas abiertas, tres cafés y una pregunta existencial: ¿puede existir una mochila que no contenga nada? Pues sí, y los matemáticos la adoran. Se llama conjunto vacío, se escribe con un círculo tachado, y es el único conjunto sin elementos. Hoy veremos por qué ese cero absoluto es la estrella del capítulo 2. Y te adelanto: al final volveremos a esa mochila. Sigue conmigo."
+    },
+    {
+      "id": 2,
+      "heading": "Subconjuntos y partes: la familia crece",
+      "text": "Un conjunto es una colección de cosas. Si todo lo de A está en B, A es subconjunto de B, y si además son distintos, es estrictamente contenido. Hasta ahí fácil. Pero aquí viene el giro: el conjunto de todos los subconjuntos de A se llama conjunto de partes, P(A). Si A tiene tres elementos, P(A) tiene ocho. Es como una familia que invita a todos sus parientes, incluidos el vacío y ella misma. Y ojo: P(A ∩ B) = P(A) ∩ P(B), pero con la unión no siempre funciona. La diapositiva 2 te lo muestra con un ejemplo."
+    },
+    {
+      "id": 3,
+      "heading": "Operaciones: intersección, unión y complemento",
+      "text": "Intersección: lo que está en ambos a la vez, como los amigos en común. Unión: lo que está en uno o en otro, sin repetir. Si no comparten nada, son disjuntos. El complementario de A en X es X menos A. Y hay un detalle jugoso: la unión y la intersección se distribuyen, pero no como uno espera. A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C), y A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C). Eso sí, A ∪ (B ∩ C) no siempre es igual a (A ∪ B) ∩ C. La diapositiva 2, ejemplo 2.2(vi), te lo deja claro. Además, las leyes de De Morgan: el complemento de la unión es la intersección de complementos, y viceversa."
+    },
+    {
+      "id": 4,
+      "heading": "Cierre: producto cartesiano y vuelta a la mochila",
+      "text": "Y para terminar, el producto cartesiano: pares ordenados (a, b) con a en A y b en B. Si A tiene dos elementos y B tiene tres, A × B tiene seis. Ojo: A × B no es lo mismo que B × A, salvo casos triviales. ¿Y la mochila vacía? Pues A × ∅ = ∅, porque no hay ningún par posible. Ahí tienes la conexión: el vacío se multiplica y lo aniquila todo. Vuelve a la diapositiva 2 y lee la Definición 2.1 con otra cara: el conjunto vacío es único, y el producto cartesiano con él es vacío. Y ahora, cierra alguna pestaña."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "¿Qué es el conjunto de partes de A?",
+      "options": [
+        "El conjunto de todos los subconjuntos de A",
+        "El conjunto de los elementos que no están en A",
+        "La unión de A con su complementario"
+      ],
+      "answerIndex": 0,
+      "explanation": "P(A) contiene todos los subconjuntos de A, incluidos el vacío y el propio A."
+    },
+    {
+      "question": "En el episodio, ¿a qué se comparó el conjunto vacío?",
+      "options": [
+        "A una mochila que no contiene nada",
+        "A una caja llena de sorpresas",
+        "A un círculo perfecto"
+      ],
+      "answerIndex": 0,
+      "explanation": "Se usó la analogía de una mochila invisible para introducir el conjunto vacío."
+    },
+    {
+      "question": "¿Cuál es el resultado de A × ∅?",
+      "options": [
+        "El conjunto vacío",
+        "El conjunto A",
+        "Un conjunto con un par (a, ∅)"
+      ],
+      "answerIndex": 0,
+      "explanation": "No hay ningún par posible porque el segundo conjunto no tiene elementos."
+    }
+  ]
+}
