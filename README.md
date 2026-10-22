@@ -16,7 +16,7 @@ Turn notes, slides, or photos into a short audio/video lesson — with as few st
 ```
 docs/PRODUCT.md
 evals/README.md
-evals/sources/      (local only, gitignored)
+evals/sources/      committed lecture PDFs
 evals/results/      (gitignored)
 CONTRIBUTING.md
 AGENTS.md

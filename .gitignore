@@ -37,7 +37,6 @@ uploads/
 storage/
 media/
 generated/
-evals/sources/
 evals/results/
 *.sqlite
 *.sqlite3

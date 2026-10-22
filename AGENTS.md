@@ -15,7 +15,7 @@ Greenfield hackathon project. No application code, package manifest, tests, or C
 ```
 docs/PRODUCT.md     narrow MVP, non-goals, demo, architecture
 evals/README.md     source corpus and comparison checklist
-evals/sources/      real lecture PDFs (local only, gitignored)
+evals/sources/      real lecture PDFs (committed corpus)
 evals/results/      generated outputs (gitignored)
 CONTRIBUTING.md     branching, commit, PR, and agent rules
 AGENTS.md           this file
@@ -48,8 +48,8 @@ git push -u origin feat/short-description
 
 ## Hard rules
 
-- Never commit `.env`, keys, tokens, uploaded course material, student data, voice recordings, or generated media.
-- `evals/sources/` and `evals/results/` are gitignored on purpose; keep lecture PDFs and generated outputs local unless the team explicitly approves sharing them.
+- Never commit `.env`, keys, tokens, private uploads, student data, voice recordings, or generated media.
+- `evals/sources/` is the only committed course-material exception; add only material the team has permission to use. `evals/results/` stays gitignored.
 - Never commit `node_modules/`, virtualenvs, build output, caches, or local databases.
 - Keep `main` demoable.
 - If a secret is committed, rotate it — deleting the line is not enough.

@@ -16,8 +16,8 @@ The set covers dense text, formulas, diagrams, scanned-looking pages, and two la
 
 ## Rules
 
-- `sources/` and `results/` are **gitignored**. Do not commit lecture PDFs or generated media without explicit permission; share them out-of-band or use Git LFS if the team decides to.
-- Put generated scripts, audio, video, and measurements in `results/`.
+- `sources/` is committed so teammates can run the demo and develop against real material. Keep it small, and only add material the team has permission to use.
+- `results/` is gitignored. Generated scripts, audio, video, and measurements stay out of Git.
 - Add a row to the table when adding a source.
 - Name files `subject-topic.pdf` in kebab-case, with no spaces.
 - Only add material the team has permission to use.
