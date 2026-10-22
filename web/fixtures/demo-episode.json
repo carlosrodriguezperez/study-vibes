@@ -1,44 +1,30 @@
 {
-  "title": "Tus ex y el conjunto vacío",
-  "topic": "Conjuntos: Spotify, Cantor y un par de chistes",
+  "title": "Tus ex, Cantor y una pizza",
+  "topic": "Conjuntos: drama, chistes y una pizza mal contada",
   "language": "es",
   "segments": [
     {
       "id": 1,
-      "heading": "Todo se explica con dos círculos",
-      "text": "¿Y si te dijera que toda tu vida, tus gustos y hasta tus ex se pueden explicar con un par de círculos cruzados? A simple vista, la teoría de conjuntos suena al tema más seco del universo, pero en realidad es el «multiverso» de las matemáticas. Es básicamente el arte de cotillear, clasificar y meter cosas en bolsas digitales. Piénsalo: Spotify no hace más que teoría de conjuntos para crearte una playlist; es literalmente la intersección entre «canciones que te gustan» y «canciones que escucha la gente igual de rara que tú»."
-    },
-    {
-      "id": 2,
-      "heading": "Cantor y el drama del infinito",
-      "text": "Además, la historia de cómo nació esto tiene un drama tremendo. La inventó un matemático alemán llamado Georg Cantor a finales del siglo XIX, hacia 1874. El tío se puso a pensar en el infinito y descubrió algo que le voló la cabeza a todo el mundo: ¡hay infinitos que son más grandes que otros infinitos! La comunidad matemática de la época se lo tomó tan mal que lo trataron de loco, su propio mentor lo llamó «corruptor de la juventud» y el pobre Cantor acabó desquiciado. O sea, estudiar conjuntos no solo mola: es que literalmente rompió la matriz de la matemática moderna."
-    },
-    {
-      "id": 3,
-      "heading": "Chistes y vuelta a la realidad",
-      "text": "Para que veas que tiene su guasa, aquí van un par de chistes de conjuntos. ¿Qué le dice un conjunto vacío a otro? «No somos nada». ¿Por qué el conjunto A rompió con el conjunto B? Porque no tenían nada en común, su intersección era nula. Un matemático va a un restaurante y pide una pizza. El camarero le pregunta: «¿Se la corto en 4 o en 8 trozos?». El matemático responde: «En 4, por favor, no creo que pueda comerme 8». Vale, este es de fracciones, pero seguro que a Cantor le habría sacado una sonrisa. Al final, aprender conjuntos es como aprender el lenguaje secreto con el que se programa la lógica, la informática y las bases de datos del mundo entero. No estás estudiando números, estás estudiando cómo organizamos la realidad. ¿Hay algún tema específico de conjuntos que te dé especial pereza, como las uniones, intersecciones o los infinitos de Cantor, para intentar buscarle la vuelta divertida?"
+      "heading": "Todo seguido",
+      "text": "¿Y si te dijera que toda tu vida, tus gustos y hasta tus ex se pueden explicar con un par de círculos cruzados? La historia de cómo nació la teoría de conjuntos tiene un drama tremendo. La inventó un matemático alemán llamado Georg Cantor a finales del siglo XIX, hacia 1874. El tío se puso a pensar en el infinito y descubrió algo que le voló la cabeza a todo el mundo: ¡hay infinitos que son más grandes que otros infinitos! La comunidad matemática de la época se lo tomó tan mal que lo trataron de loco, su propio mentor lo llamó «corruptor de la juventud» y el pobre Cantor acabó desquiciado. F por Cantor, pero bueno, vamos a contar unos chistes de conjuntos. ¿Qué le dice un conjunto vacío a otro? «No somos nada». ¿Por qué el conjunto A rompió con el conjunto B? Porque no tenían nada en común, su intersección era nula. Un matemático va a un restaurante y pide una pizza. El camarero le pregunta: «¿Se la corto en 4 o en 8 trozos?». El matemático responde: «En 4, por favor, no creo que pueda comerme 8». Vale, este es de fracciones, pero seguro que a Cantor le habría sacado una sonrisa."
     }
   ],
   "quiz": [
     {
-      "question": "Según el episodio, ¿qué hace Spotify para crearte una playlist?",
-      "options": [
-        "Una intersección entre tus canciones y las de gente parecida a ti",
-        "Una unión de todos los artistas que existen",
-        "Un conjunto vacío hasta que pulsas play"
-      ],
+      "question": "¿Quién inventó la teoría de conjuntos?",
+      "options": ["Georg Cantor", "Isaac Newton", "Euclides"],
       "answerIndex": 0,
-      "explanation": "La playlist es la intersección entre «canciones que te gustan» y «canciones que escucha la gente igual de rara que tú»."
+      "explanation": "Cantor la desarrolló a finales del siglo XIX, hacia 1874."
     },
     {
       "question": "¿Qué descubrió Cantor pensando en el infinito?",
       "options": [
-        "Que todos los infinitos son iguales",
         "Que hay infinitos más grandes que otros",
+        "Que el infinito es siempre igual",
         "Que el infinito no existe"
       ],
-      "answerIndex": 1,
-      "explanation": "Cantor demostró que hay infinitos de distintos tamaños; la comunidad matemática de su época lo tomó muy mal."
+      "answerIndex": 0,
+      "explanation": "Descubrió que hay infinitos de distintos tamaños, y la comunidad matemática se lo tomó muy mal."
     },
     {
       "question": "¿Qué le dice un conjunto vacío a otro?",

@@ -42,7 +42,9 @@ export default function Player({ id }: { id: string }) {
         if (!appliedResume.current && data.segments.length > 0) {
           appliedResume.current = true;
           try {
-            const saved = localStorage.getItem(`sv:progress:${id}`);
+            // Keyed by the script itself: a re-rendered episode starts fresh.
+            const key = `sv:progress:${id}:${data.segments[0]?.textHash ?? "0"}`;
+            const saved = localStorage.getItem(key);
             if (saved) {
               const parsed = JSON.parse(saved) as { index: number; time: number };
               if (
@@ -169,10 +171,8 @@ export default function Player({ id }: { id: string }) {
 
   function remember(nextTime: number) {
     try {
-      localStorage.setItem(
-        `sv:progress:${id}`,
-        JSON.stringify({ index, time: nextTime }),
-      );
+      const key = `sv:progress:${id}:${episode?.segments[0]?.textHash ?? "0"}`;
+      localStorage.setItem(key, JSON.stringify({ index, time: nextTime }));
     } catch {
       /* storage may be full or blocked */
     }
